@@ -1,4 +1,4 @@
-from googledocs_to_anki import __version__
+from anki_swiss_knife import __version__
 
 
 def test_version():

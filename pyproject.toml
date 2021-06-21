@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "googledocs_to_anki"
+name = "anki_swiss_knife"
 version = "0.1.0"
 description = ""
 authors = ["Jeff Labonte <grimsleepless@protonmail.com>"]
