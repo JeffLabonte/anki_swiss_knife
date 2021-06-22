@@ -23,5 +23,8 @@ parser.add_argument(
 if __name__ == "__main__":
     args = parser.parse_args()
 
+    document_id = args.document_id
+
+    print(f"[+] Extracting Google Docs Document ID: {document_id}")
     google_docs = GoogleDocs(output_folder=args.output_folder)
-    google_docs.extract_document_to_file(document_id=args.document_id)
+    google_docs.extract_document_to_file(document_id=document_id)
