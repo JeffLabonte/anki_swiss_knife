@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from typing import List
 
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
@@ -9,6 +10,8 @@ class GoogleDocs:
     SCOPES = [
         "https://www.googleapis.com/auth/documents",
     ]
+
+    VOCAB_START_FLAG = "END FIRST PAGE"
 
     _FOLDER = "anki_swiss_knife"
 
@@ -37,8 +40,29 @@ class GoogleDocs:
     def get_document(self, document_id: str):
         return self.service.documents().get(documentId=document_id)
 
+    def is_valid_text(self, element):
+        if element.get("paragraph"):
+            if element_content := self.extract_content(element=element):
+                return element_content != "\n"
+        return False
+
+    @staticmethod
+    def extract_content(element):
+        paragraph_elements = element["paragraph"]["elements"]
+        for e in paragraph_elements:
+            if e.get("textRun"):
+                return e["textRun"]["content"]
+
+    def find_page_flag(self, contents: List[str]) -> int:
+        for index, content in enumerate(contents):
+            if self.VOCAB_START_FLAG in content:
+                return index
+
     def extract_document_to_file(self, document_id):
         document = self.get_document(document_id=document_id).execute()
-        document_content = document["body"]["content"]
-        with open("", "w+") as f:
-            print("Test")
+        document_contents = document["body"]["content"]
+
+        contents = [self.extract_content(e) for e in document_contents if self.is_valid_text(element=e)]
+        vocabulary_start_index = self.find_page_flag(contents=contents)
+        with open(os.path.join(self.output_folder, document["title"]), "w+") as f:
+            f.writelines(contents[vocabulary_start_index:])
