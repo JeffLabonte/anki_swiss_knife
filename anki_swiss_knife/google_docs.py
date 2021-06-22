@@ -7,6 +7,10 @@ from googleapiclient.discovery import build
 
 
 class GoogleDocs:
+    """
+    Extracts a Google Doc document into a .txt file. That .txt file can
+    be parsed into a CSV file. The CSV file is to be imported by Anki afterwards
+    """
     SCOPES = [
         "https://www.googleapis.com/auth/documents",
     ]
@@ -58,11 +62,17 @@ class GoogleDocs:
             if self.VOCAB_START_FLAG in content:
                 return index
 
-    def extract_document_to_file(self, document_id):
+    def extract_document_to_file(self, document_id: str) -> Path:
+        """
+        Extract document from Google Docs into a .txt file
+        so it can be processed for Anki as CSV.
+        """
         document = self.get_document(document_id=document_id).execute()
         document_contents = document["body"]["content"]
 
         contents = [self.extract_content(e) for e in document_contents if self.is_valid_text(element=e)]
         vocabulary_start_index = self.find_page_flag(contents=contents)
-        with open(os.path.join(self.output_folder, document["title"]), "w+") as f:
+        saved_file_path = os.path.join(self.output_folder, f"{document['title']}.txt")
+        with open(saved_file_path, "w+") as f:
             f.writelines(contents[vocabulary_start_index:])
+            return saved_file_path
