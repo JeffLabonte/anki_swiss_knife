@@ -1,6 +1,7 @@
 import argparse
 from pathlib import Path
 
+from anki_swiss_knife.csv_generator import CSVGenerator
 from anki_swiss_knife.google_docs import GoogleDocs
 
 parser = argparse.ArgumentParser(description="What document do you want to parse")
@@ -27,4 +28,5 @@ if __name__ == "__main__":
 
     print(f"[+] Extracting Google Docs Document ID: {document_id}")
     google_docs = GoogleDocs(output_folder=args.output_folder)
-    google_docs.extract_document_to_file(document_id=document_id)
+    filepath = google_docs.extract_document_to_file(document_id=document_id)
+    CSVGenerator(file_to_convert=filepath).generate_csv()
