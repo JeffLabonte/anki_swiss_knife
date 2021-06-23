@@ -1,9 +1,13 @@
+import re
 import os
 from pathlib import Path
 from typing import List
 
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+
+
+DATE_REGEX = re.compile(r"[0-9]{3}")
 
 
 class GoogleDocs:
@@ -47,7 +51,7 @@ class GoogleDocs:
     def is_valid_text(self, element):
         if element.get("paragraph"):
             if element_content := self.extract_content(element=element):
-                return element_content != "\n"
+                return element_content != "\n" and DATE_REGEX.match(element_content) is None
         return False
 
     @staticmethod
@@ -74,6 +78,6 @@ class GoogleDocs:
         vocabulary_start_index = self.find_page_flag(contents=contents)
         saved_file_path = os.path.join(self.output_folder, f"{document['title']}.txt")
         with open(saved_file_path, "w+") as f:
-            f.writelines(contents[vocabulary_start_index:])
+            f.writelines(contents[vocabulary_start_index + 1:])
             print(f"[+] File saved: {saved_file_path}")
             return saved_file_path
