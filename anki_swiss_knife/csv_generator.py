@@ -5,6 +5,12 @@ class CSVGenerator:
         self.file_to_convert = file_to_convert
         self.extra_rules = extra_rules
 
+    def _is_chinese_character(self, text):
+        is_chinese = False
+        if re.search("[\u4e00-\u9FFF]", text):
+            is_chinese = not is_chinese
+        return is_chinese
+
     def generate_row(self, line: str) -> Tuple:
         content_words = line.split(" ")
         rest_of_sentense = " ".join(content_words[1:])
