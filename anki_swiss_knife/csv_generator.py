@@ -1,6 +1,13 @@
+import re
+from typing import List, Optional, Tuple
 
 
 class CSVGenerator:
+    ADD_RULES = [
+        " + V",
+        "+V"
+    ]
+
     def __init__(self, file_to_convert: str, extra_rules: Optional[List[str]] = None):
         self.file_to_convert = file_to_convert
         self.extra_rules = extra_rules
