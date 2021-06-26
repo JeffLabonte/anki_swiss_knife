@@ -1,4 +1,3 @@
-from typing import List, Optional
 
 
 class CSVGenerator:
@@ -6,13 +5,17 @@ class CSVGenerator:
         self.file_to_convert = file_to_convert
         self.extra_rules = extra_rules
 
+    def generate_row(self, line: str) -> Tuple:
+        content_words = line.split(" ")
+        rest_of_sentense = " ".join(content_words[1:])
+        chinese_chars = content_words[0].strip(" ")
+        return chinese_chars, rest_of_sentense
+
     def generate_csv(self):
         file_content = self._read_file()
         with open(self._generate_csv_file_path(), "w+") as f:
             for content in file_content:
-                content_words = content.split(" ")
-                rest_of_sentense = " ".join(content_words[1:])
-                chinese_chars = content_words[0].strip(" ")
+                chinese_chars, rest_of_sentense = self.generate_row(line=content)
                 if chinese_chars and rest_of_sentense:
                     f.write(f"{chinese_chars};{rest_of_sentense}")
 
