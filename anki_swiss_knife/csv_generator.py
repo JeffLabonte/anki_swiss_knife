@@ -12,9 +12,9 @@ class CSVGenerator:
         self.file_to_convert = file_to_convert
         self.extra_rules = extra_rules
 
-    def _is_chinese_character(self, text):
+    def _is_chinese_character(self, character):
         is_chinese = False
-        if re.search("[\u4e00-\u9FFF]", text):
+        if re.search("[\u4e00-\u9FFF]", character):
             is_chinese = not is_chinese
         return is_chinese
 
