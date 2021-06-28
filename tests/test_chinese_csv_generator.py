@@ -23,7 +23,11 @@ def test__csv_generator__is_chinese_character__should_return_false_on_latin_char
     ("放假 fàngjià (v./n.) vacation", "放假;fàngjià (v./n.) vacation"),
     ("第一 + measure word, dìyī + measure first", "第一 + measure word;dìyī + measure first"),
     ("No chinese Character", None),
-    ("你吃午餐了吗？", None)
+    ("你吃午餐了吗？", None),
+    (
+        "哪一季你最喜欢？nǎ yí jì nǐ zuì xǐhuān? Which season do you like best?",
+        "哪一季你最喜欢？;nǎ yí jì nǐ zuì xǐhuān? Which season do you like best?",
+    ),
 ])
 def test__csv_generator__generator_row__should_return_expected_format(
     line,

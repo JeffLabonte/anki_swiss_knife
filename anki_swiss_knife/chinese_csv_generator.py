@@ -13,7 +13,6 @@ class ChineseCSVGenerator:
         "+V.",
         " + measure word",
         "+measure word",
-        "?",
     )
 
     TEXT_TO_REMOVE = (
@@ -45,8 +44,8 @@ class ChineseCSVGenerator:
 
     def _find_end_index_for_chinese_char(self, text: str) -> int:
         for index, character in enumerate(text):
-            if not self._is_character_in_unicode(
-                unicode_regex=self.CHINESE_UNICODES,
+            if self._is_character_in_unicode(
+                unicode_regex=self.LATIN_UNICODES,
                 character=character,
             ):
                 return index
