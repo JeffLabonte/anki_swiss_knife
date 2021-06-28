@@ -49,7 +49,14 @@ class CSVGenerator:
         else:
             return self._find_end_index_for_chinese_char(text=text)
 
-    def generate_row(self, line: str) -> str:
+    def has_chinese_charater_in_line(self, line: str) -> bool:
+        chinese_chars = [character for character in line if self._is_chinese_character(character=character)]
+        return chinese_chars != []
+
+    def generate_row(self, line: str) -> Optional[str]:
+        if not self.has_chinese_charater_in_line(line=line):
+            return None
+
         index = self.find_first_column_ends(text=line)
 
         chinese_chars = self._remove_unwanted_text(text=line[0:index])
