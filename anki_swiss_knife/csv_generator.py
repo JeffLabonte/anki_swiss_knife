@@ -6,6 +6,8 @@ class CSVGenerator:
     TEXT_TO_KEEP_IN_FIRST_COLUMN = (
         " + V.",
         "+V.",
+        " + measure word",
+        "+measure word",
     )
 
     TEXT_TO_REMOVE = (
@@ -23,7 +25,7 @@ class CSVGenerator:
         return is_chinese
 
     def _remove_unwanted_text(self, text: str) -> str:
-        text = text.lstrip(" ")
+        text = text.lstrip(",").lstrip(" ")
         for remove in self.TEXT_TO_REMOVE:
             text = text.replace(remove, "").lstrip(" ")
         return text

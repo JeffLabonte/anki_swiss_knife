@@ -20,7 +20,8 @@ def test__csv_generator__is_chinese_character__should_return_false_on_latin_char
 
 @pytest.mark.parametrize("line, expected_result", [
     ("要 + V. (future tense) will, be going to + V.", "要 + V.;will, be going to + V.",),
-    ("放假 fàngjià (v./n.) vacation", "放假;fàngjià (v./n.) vacation")
+    ("放假 fàngjià (v./n.) vacation", "放假;fàngjià (v./n.) vacation"),
+    ("第一 + measure word, dìyī + measure first", "第一 + measure word;dìyī + measure first")
 ])
 def test__csv_generator__generator_row__should_return_expected_format(
     line,
