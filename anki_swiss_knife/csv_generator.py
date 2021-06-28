@@ -14,15 +14,14 @@ class CSVGenerator:
         "(future tense)",
     )
 
+    CHINESE_UNICODES = "[\u4e00-\u9FFF]"
+
     def __init__(self, file_to_convert: str, extra_rules: Optional[List[str]] = None):
         self.file_to_convert = file_to_convert
         self.extra_rules = extra_rules
 
     def _is_chinese_character(self, character):
-        is_chinese = False
-        if re.search("[\u4e00-\u9FFF]", character):
-            is_chinese = not is_chinese
-        return is_chinese
+        return True if re.search(self.CHINESE_UNICODES, character) else False
 
     def _remove_unwanted_text(self, text: str) -> str:
         text = text.lstrip(",").lstrip(" ")
