@@ -28,6 +28,9 @@ def test__csv_generator__is_chinese_character__should_return_false_on_latin_char
         "哪一季你最喜欢？nǎ yí jì nǐ zuì xǐhuān? Which season do you like best?",
         "哪一季你最喜欢？;nǎ yí jì nǐ zuì xǐhuān? Which season do you like best?",
     ),
+    ("4个人一车 4 Gèrén yī chē 4 person in a car", "4个人一车;4 Gèrén yī chē 4 person in a car"),
+    ("12个人一队 12 ge rén yí duì 12 persons in a team", "12个人一队;12 ge rén yí duì 12 persons in a team"),
+    ("V. + 了 past tense (you did something)", "V. + 了;past tense (you did something)")
 ])
 def test__csv_generator__generator_row__should_return_expected_format(
     line,

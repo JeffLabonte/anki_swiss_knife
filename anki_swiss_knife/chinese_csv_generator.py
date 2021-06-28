@@ -13,6 +13,10 @@ class ChineseCSVGenerator:
         "+V.",
         " + measure word",
         "+measure word",
+        "SF",
+        "Quebec City",
+        " + W",
+        "V. + ",
     )
 
     TEXT_TO_REMOVE = (
@@ -47,14 +51,23 @@ class ChineseCSVGenerator:
             if self._is_character_in_unicode(
                 unicode_regex=self.LATIN_UNICODES,
                 character=character,
-            ):
+            ) and not character.isdigit():
                 return index
 
     def find_first_column_ends(self, text: str) -> int:
         indexes = self._find_end_index_for_text_to_keep(text=text)
         if indexes:
             indexes.sort(reverse=True)
-            return indexes[0]
+            first_column_index = indexes[0]
+            if self.has_chinese_charater_in_line(text[0:first_column_index]):
+                return first_column_index
+            else:
+                for index, character in enumerate(text[first_column_index:]):
+                    if self._is_character_in_unicode(
+                        unicode_regex=self.LATIN_UNICODES,
+                        character=character,
+                    ):
+                        return first_column_index + index
         else:
             return self._find_end_index_for_chinese_char(text=text)
 
@@ -81,7 +94,10 @@ class ChineseCSVGenerator:
         return latin_chars != []
 
     def generate_row(self, line: str) -> Optional[str]:
-        if not self.has_chinese_charater_in_line(line=line) or not self.has_latin_character_in_line(line=line):
+        if not self.has_chinese_charater_in_line(line=line)\
+                or not self.has_latin_character_in_line(line=line)\
+                or line.startswith("#"):
+            print(f"[-] This line doesn't work: {line}\n")
             return None
 
         index = self.find_first_column_ends(text=line)
