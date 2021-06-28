@@ -1,21 +1,21 @@
 import pytest
 
-from anki_swiss_knife.csv_generator import CSVGenerator
+from anki_swiss_knife.chinese_csv_generator import ChineseCSVGenerator
 
 
 def setup_csv_generator(file_to_convert=None):
-    return CSVGenerator(file_to_convert=file_to_convert)
+    return ChineseCSVGenerator(file_to_convert=file_to_convert)
 
 
 def test__csv_generator__is_chinese_character__should_return_true_on_chinese_char():
     csv_generator = setup_csv_generator()
     chinese_char = "也"
-    assert csv_generator._is_chinese_character(chinese_char) is True
+    assert csv_generator.has_chinese_charater_in_line(chinese_char) is True
 
 
 def test__csv_generator__is_chinese_character__should_return_false_on_latin_char():
     csv_generator = setup_csv_generator()
-    assert csv_generator._is_chinese_character("a") is False
+    assert csv_generator.has_chinese_charater_in_line("a") is False
 
 
 @pytest.mark.parametrize("line, expected_result", [
@@ -23,6 +23,7 @@ def test__csv_generator__is_chinese_character__should_return_false_on_latin_char
     ("放假 fàngjià (v./n.) vacation", "放假;fàngjià (v./n.) vacation"),
     ("第一 + measure word, dìyī + measure first", "第一 + measure word;dìyī + measure first"),
     ("No chinese Character", None),
+    ("你吃午餐了吗？", None)
 ])
 def test__csv_generator__generator_row__should_return_expected_format(
     line,
