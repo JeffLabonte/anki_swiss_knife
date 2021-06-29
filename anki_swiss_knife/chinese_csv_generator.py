@@ -11,6 +11,7 @@ class ChineseCSVGenerator:
 
     TEXT_TO_KEEP_IN_FIRST_COLUMN = (
         " + V.",
+        "+ V.",
         "+V.",
         " + measure word",
         "+measure word",
@@ -24,6 +25,7 @@ class ChineseCSVGenerator:
         "+someone.+",
         "Ajd. / V.  + ",
         "(是)",
+        "，"
     )
 
     TEXT_TO_REMOVE = ("(future tense)",)
@@ -119,7 +121,8 @@ class ChineseCSVGenerator:
         with open(self._generate_csv_file_path(), "w+") as f:
             for content in file_content:
                 row = self.generate_row(line=content)
-                if row:
+                if row and len(row) - 2 != len(content):
+                    print(f"{content} -> {row}")
                     f.write(row)
 
     def _read_file(self):

@@ -90,6 +90,6 @@ class GoogleDocs:
         vocabulary_start_index = self.find_page_flag(contents=contents)
         saved_file_path = os.path.join(self.output_folder, f"{document['title']}.txt")
         with open(saved_file_path, "w+") as f:
-            f.writelines(contents[vocabulary_start_index + 1 :])
+            f.writelines(contents[vocabulary_start_index + 1:])
             print(f"[+] File saved: {saved_file_path}")
             return saved_file_path
