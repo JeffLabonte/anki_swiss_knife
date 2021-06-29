@@ -8,6 +8,7 @@ class ChineseCSVGenerator:
 
     This class works only for chinese character
     """
+
     TEXT_TO_KEEP_IN_FIRST_COLUMN = (
         " + V.",
         "+V.",
@@ -17,11 +18,15 @@ class ChineseCSVGenerator:
         "Quebec City",
         " + W",
         "V. + ",
+        "(个)",
+        "Harry Potter",
+        "Star Wars",
+        "+someone.+",
+        "Ajd. / V.  + ",
+        "(是)",
     )
 
-    TEXT_TO_REMOVE = (
-        "(future tense)",
-    )
+    TEXT_TO_REMOVE = ("(future tense)",)
 
     CHINESE_UNICODES = "[\u4e00-\u9FFF]"
     LATIN_UNICODES = "[\u0000-\u007F]"
@@ -42,16 +47,19 @@ class ChineseCSVGenerator:
     def _find_end_index_for_text_to_keep(self, text: str) -> List[int]:
         return [
             text.index(text_to_keep) + len(text_to_keep)
-            for text_to_keep in self.TEXT_TO_KEEP_IN_FIRST_COLUMN
+            for index, text_to_keep in enumerate(self.TEXT_TO_KEEP_IN_FIRST_COLUMN)
             if text_to_keep in text
         ]
 
     def _find_end_index_for_chinese_char(self, text: str) -> int:
         for index, character in enumerate(text):
-            if self._is_character_in_unicode(
-                unicode_regex=self.LATIN_UNICODES,
-                character=character,
-            ) and not character.isdigit() and character != "/":
+            if (
+                self._is_character_in_unicode(
+                    unicode_regex=self.LATIN_UNICODES,
+                    character=character,
+                )
+                and not character.isdigit()
+            ):
                 return index
 
     def find_first_column_ends(self, text: str) -> int:
@@ -59,17 +67,14 @@ class ChineseCSVGenerator:
         if indexes:
             indexes.sort(reverse=True)
             first_column_index = indexes[0]
-            if self.has_chinese_charater_in_line(text[0:first_column_index]):
-                return first_column_index
-            else:
-                for index, character in enumerate(text[first_column_index:]):
-                    if self._is_character_in_unicode(
-                        unicode_regex=self.LATIN_UNICODES,
-                        character=character,
-                    ):
-                        return first_column_index + index
-        else:
-            return self._find_end_index_for_chinese_char(text=text)
+            for index, character in enumerate(text[first_column_index:]):
+                if self._is_character_in_unicode(
+                    unicode_regex=self.LATIN_UNICODES,
+                    character=character,
+                ):
+                    return first_column_index + index
+
+        return self._find_end_index_for_chinese_char(text=text)
 
     def has_chinese_charater_in_line(self, line: str) -> bool:
         chinese_chars = [
@@ -94,9 +99,11 @@ class ChineseCSVGenerator:
         return latin_chars != []
 
     def generate_row(self, line: str) -> Optional[str]:
-        if not self.has_chinese_charater_in_line(line=line)\
-                or not self.has_latin_character_in_line(line=line)\
-                or line.startswith("#"):
+        if (
+            not self.has_chinese_charater_in_line(line=line)
+            or not self.has_latin_character_in_line(line=line)
+            or line.startswith("#")
+        ):
             print(f"[-] This line doesn't work: {line}")
             return None
 
@@ -105,7 +112,7 @@ class ChineseCSVGenerator:
         chinese_chars = self._remove_unwanted_text(text=line[0:index])
         rest_of_sentence = self._remove_unwanted_text(text=line[index:])
 
-        return f"{chinese_chars};{rest_of_sentence}"
+        return f"{chinese_chars};{rest_of_sentence}\n"
 
     def generate_csv(self):
         file_content = self._read_file()
@@ -121,4 +128,3 @@ class ChineseCSVGenerator:
 
     def _generate_csv_file_path(self) -> str:
         return f"{self.file_to_convert.split('.')[0]}.csv"
-
