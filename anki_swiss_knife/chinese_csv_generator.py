@@ -51,7 +51,7 @@ class ChineseCSVGenerator:
             if self._is_character_in_unicode(
                 unicode_regex=self.LATIN_UNICODES,
                 character=character,
-            ) and not character.isdigit():
+            ) and not character.isdigit() and character != "/":
                 return index
 
     def find_first_column_ends(self, text: str) -> int:
@@ -97,7 +97,7 @@ class ChineseCSVGenerator:
         if not self.has_chinese_charater_in_line(line=line)\
                 or not self.has_latin_character_in_line(line=line)\
                 or line.startswith("#"):
-            print(f"[-] This line doesn't work: {line}\n")
+            print(f"[-] This line doesn't work: {line}")
             return None
 
         index = self.find_first_column_ends(text=line)

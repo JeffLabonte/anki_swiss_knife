@@ -24,13 +24,15 @@ def test__csv_generator__is_chinese_character__should_return_false_on_latin_char
     ("第一 + measure word, dìyī + measure first", "第一 + measure word;dìyī + measure first"),
     ("No chinese Character", None),
     ("你吃午餐了吗？", None),
+    ("六月开始变热", None),
     (
         "哪一季你最喜欢？nǎ yí jì nǐ zuì xǐhuān? Which season do you like best?",
         "哪一季你最喜欢？;nǎ yí jì nǐ zuì xǐhuān? Which season do you like best?",
     ),
     ("4个人一车 4 Gèrén yī chē 4 person in a car", "4个人一车;4 Gèrén yī chē 4 person in a car"),
     ("12个人一队 12 ge rén yí duì 12 persons in a team", "12个人一队;12 ge rén yí duì 12 persons in a team"),
-    ("V. + 了 past tense (you did something)", "V. + 了;past tense (you did something)")
+    ("V. + 了 past tense (you did something)", "V. + 了;past tense (you did something)"),
+    ("一点三十分/一点半 yì diǎn sānshí fēn/yìdiǎnbàn", "一点三十分/一点半;yì diǎn sānshí fēn/yìdiǎnbàn"),
 ])
 def test__csv_generator__generator_row__should_return_expected_format(
     line,
