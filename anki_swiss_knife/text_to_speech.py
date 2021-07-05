@@ -2,8 +2,12 @@ from pathlib import Path
 
 
 class TextToSpeech:
-
-    def __init__(self, language_code: str, voice_id: str, base_folder_path: str = Path.home(),):
+    def __init__(
+        self,
+        language_code: str,
+        voice_id: str,
+        base_folder_path: str = Path.home(),
+    ):
         self.language_code = language_code
         self.voice_id = voice_id
         self.base_folder_path = base_folder_path

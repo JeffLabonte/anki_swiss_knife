@@ -25,7 +25,7 @@ class ChineseCSVGenerator:
         "+someone.+",
         "Ajd. / V.  + ",
         "(是)",
-        "，"
+        "，",
     )
 
     TEXT_TO_REMOVE = ("(future tense)",)
