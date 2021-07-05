@@ -23,6 +23,7 @@ class GoogleDocs:
     VOCAB_START_FLAG = "END FIRST PAGE"
 
     _FOLDER = "anki_swiss_knife"
+
     _GDOCS_PARAGRAPH = "paragraph"
     _GDOCS_ELEMENTS = "elements"
     _GDOCS_TABLE = "table"
