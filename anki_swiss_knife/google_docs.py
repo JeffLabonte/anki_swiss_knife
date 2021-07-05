@@ -49,7 +49,12 @@ class GoogleDocs:
 
     def _login(self):
         filepath = Path(
-            Path.joinpath(Path.home(), ".config", "anki_swiss_tool", "credentials.json")
+            Path.joinpath(
+                Path.home(),
+                ".config",
+                "anki_swiss_tool",
+                "credentials.json",
+            )
         )
         if filepath.exists():
             self._credentials = Credentials.from_service_account_file(
