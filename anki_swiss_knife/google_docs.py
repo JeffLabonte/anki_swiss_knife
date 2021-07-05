@@ -23,6 +23,12 @@ class GoogleDocs:
     VOCAB_START_FLAG = "END FIRST PAGE"
 
     _FOLDER = "anki_swiss_knife"
+    _GDOCS_PARAGRAPH = "paragraph"
+    _GDOCS_ELEMENTS = "elements"
+    _GDOCS_TABLE = "table"
+    _GDOCS_TABLE_ROWS = "tableRows"
+    _GDOCS_TABLE_CELLS = "tableCells"
+    _GDOCS_TABLE_OF_CONTENTS = "tableOfContents"
 
     def __init__(self, output_folder):
         self._credentials = None
@@ -38,6 +44,9 @@ class GoogleDocs:
         if not os.path.exists(self.output_folder):
             os.mkdir(path=self.output_folder)
 
+    def get_document(self, document_id: str):
+        return self.service.documents().get(documentId=document_id)
+
     def _login(self):
         filepath = Path(
             Path.joinpath(Path.home(), ".config", "anki_swiss_tool", "credentials.json")
@@ -50,24 +59,8 @@ class GoogleDocs:
         else:
             raise FileNotFoundError()
 
-    def get_document(self, document_id: str):
-        return self.service.documents().get(documentId=document_id)
-
     def is_valid_text(self, element):
-        if element.get("paragraph"):
-            if element_content := self.extract_content(element=element):
-                return (
-                    element_content != "\n"
-                    and DATE_REGEX.match(element_content) is None
-                )
-        return False
-
-    @staticmethod
-    def extract_content(element):
-        paragraph_elements = element["paragraph"]["elements"]
-        for e in paragraph_elements:
-            if e.get("textRun"):
-                return e["textRun"]["content"]
+        return element and DATE_REGEX.match(element) is None
 
     def find_page_flag(self, contents: List[str]) -> int:
         for index, content in enumerate(contents):
@@ -82,14 +75,36 @@ class GoogleDocs:
         document = self.get_document(document_id=document_id).execute()
         document_contents = document["body"]["content"]
 
-        contents = [
-            self.extract_content(e)
-            for e in document_contents
-            if self.is_valid_text(element=e)
-        ]
+        text_contents = self.read_structural_element(elements=document_contents)
+        contents = [content for content in text_contents.split("\n") if self.is_valid_text(element=content)]
         vocabulary_start_index = self.find_page_flag(contents=contents)
         saved_file_path = os.path.join(self.output_folder, f"{document['title']}.txt")
         with open(saved_file_path, "w+") as f:
             f.writelines(contents[vocabulary_start_index + 1:])
             print(f"[+] File saved: {saved_file_path}")
             return saved_file_path
+
+    def read_paragraph_element(self, element):
+        text_run = element.get("textRun")
+        if not text_run:
+            return ""
+        return text_run.get("content")
+
+    def read_structural_element(self, elements):
+        text = ""
+        for value in elements:
+            if self._GDOCS_PARAGRAPH in value:
+                elements = value.get(self._GDOCS_PARAGRAPH).get(self._GDOCS_ELEMENTS)
+                for elem in elements:
+                    text += self.read_paragraph_element(element=elem)
+            elif self._GDOCS_TABLE in value:
+                table = value.get(self._GDOCS_TABLE)
+                for row in table.get(self._GDOCS_TABLE_ROWS):
+                    cells = row.get(self._GDOCS_TABLE_CELLS)
+                    for cell in cells:
+                        text += self.read_paragraph_element(element=cell)
+            elif self._GDOCS_TABLE_OF_CONTENTS in value:
+                table_of_contents = value.get(self._GDOCS_TABLE_OF_CONTENTS)
+                text += self.read_paragraph_element(element=table_of_contents)
+
+        return text
