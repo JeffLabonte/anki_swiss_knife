@@ -10,7 +10,7 @@ from googleapiclient.discovery import build
 DATE_REGEX = re.compile(r"[0-9]{3}")
 
 
-class GoogleDocs:
+class GoogleDocsDocumentReader:
     """
     Extracts a Google Doc document into a .txt file. That .txt file can
     be parsed into a CSV file. The CSV file is to be imported by Anki afterwards
