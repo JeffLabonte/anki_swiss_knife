@@ -81,7 +81,7 @@ class GoogleDocs:
         document_contents = document["body"]["content"]
 
         text_contents = self.read_structural_element(elements=document_contents)
-        contents = [content for content in text_contents.split("\n") if self.is_valid_text(element=content)]
+        contents = [f"{content}\n" for content in text_contents.split("\n") if self.is_valid_text(element=content)]
         vocabulary_start_index = self.find_page_flag(contents=contents)
         saved_file_path = os.path.join(self.output_folder, f"{document['title']}.txt")
         with open(saved_file_path, "w+") as f:
