@@ -24,6 +24,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.black]
 py36 = true
 include = '\.pyi?$'
+line-length = 120
 exclude = '''
 /(
     \.git

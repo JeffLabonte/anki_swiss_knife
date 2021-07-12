@@ -58,9 +58,7 @@ class GoogleDocsDocumentReader:
             )
         )
         if filepath.exists():
-            self._credentials = Credentials.from_service_account_file(
-                filename=filepath, scopes=self.SCOPES
-            )
+            self._credentials = Credentials.from_service_account_file(filename=filepath, scopes=self.SCOPES)
             self.service = build("docs", "v1", credentials=self._credentials)
         else:
             raise FileNotFoundError()
@@ -82,11 +80,7 @@ class GoogleDocsDocumentReader:
         document_contents = document["body"]["content"]
 
         text_contents = self.read_structural_element(elements=document_contents)
-        contents = [
-            f"{content}\n"
-            for content in text_contents.split("\n")
-            if self.is_valid_text(element=content)
-        ]
+        contents = [f"{content}\n" for content in text_contents.split("\n") if self.is_valid_text(element=content)]
         vocabulary_start_index = self.find_page_flag(contents=contents)
         saved_file_path = os.path.join(self.output_folder, f"{document['title']}.txt")
         with open(saved_file_path, "w+") as f:
