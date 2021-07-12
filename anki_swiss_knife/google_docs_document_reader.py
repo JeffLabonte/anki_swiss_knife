@@ -6,6 +6,7 @@ from typing import List
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
+from anki_swiss_knife.helper import files
 
 DATE_REGEX = re.compile(r"[0-9]{3}")
 
@@ -22,8 +23,6 @@ class GoogleDocsDocumentReader:
 
     VOCAB_START_FLAG = "END FIRST PAGE"
 
-    _FOLDER = "anki_swiss_knife"
-
     _GDOCS_PARAGRAPH = "paragraph"
     _GDOCS_ELEMENTS = "elements"
     _GDOCS_TABLE = "table"
@@ -31,24 +30,25 @@ class GoogleDocsDocumentReader:
     _GDOCS_TABLE_CELLS = "tableCells"
     _GDOCS_TABLE_OF_CONTENTS = "tableOfContents"
 
-    def __init__(self, output_folder):
+    def __init__(self, output_folder: Path):
+        """
+        output_folder is expected to use this format:
+
+        /home/username/path/to/store/stuff/in/
+        """
         self._credentials = None
         self.service = None
-        self.output_folder = Path(Path.joinpath(output_folder, self._FOLDER))
+        self.output_folder = output_folder
         self.init()
 
     def init(self):
-        self._login()
-        self._create_folder()
-
-    def _create_folder(self):
-        if not os.path.exists(self.output_folder):
-            os.mkdir(path=self.output_folder)
+        self._login_to_google()
+        files.create_folder(file_path=self.output_folder)
 
     def get_document(self, document_id: str):
         return self.service.documents().get(documentId=document_id)
 
-    def _login(self):
+    def _login_to_google(self):
         filepath = Path(
             Path.joinpath(
                 Path.home(),
