@@ -1,4 +1,4 @@
-from pathlib import Path
+import boto3
 
 
 class TextToSpeech:
@@ -6,11 +6,17 @@ class TextToSpeech:
         self,
         language_code: str,
         voice_id: str,
-        base_folder_path: str = Path.home(),
+        base_folder_path: str,
     ):
+        """
+        https://docs.aws.amazon.com/polly/latest/dg/voicelist.html
+
+        Above are the voices and languages that you can select with Polly
+        """
         self.language_code = language_code
         self.voice_id = voice_id
         self.base_folder_path = base_folder_path
+        self._polly = boto3.client("polly")
 
     def generate_sound(self, text: str):
         pass
