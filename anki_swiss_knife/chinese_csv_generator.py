@@ -121,18 +121,16 @@ class ChineseCSVGenerator:
 
         return f"{chinese_chars};{rest_of_sentence}\n"
 
-    def generate_csv(self):
-        file_content = self._read_file()
-        with open(self._generate_csv_file_path(), "w+") as f:
+    def generate_csv(self) -> str:
+        file_content = files.read_file(self.file_to_convert)
+        with open(self.csv_output_path, "w+") as f:
             for content in file_content:
                 row = self.generate_row(line=content)
                 if row and len(row) - 2 != len(content):
-                    print(f"{content} -> {row}")
                     f.write(row)
 
-    def _read_file(self):
-        with open(self.file_to_convert, "r") as f:
-            return f.readlines()
+            return self.csv_output_path
 
     def _generate_csv_file_path(self) -> str:
-        return f"{self.file_to_convert.split('.')[0]}.csv"
+        tmp_csv_file_path = self.file_to_convert.replace(file_paths.GOOGLE_DOC_FOLDER_NAME, file_paths.CSV_FOLDER_NAME)
+        return f"{tmp_csv_file_path.split('.')[0]}.csv"
