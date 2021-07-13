@@ -7,6 +7,7 @@ from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
 from anki_swiss_knife.helper import files
+from anki_swiss_knife.constants import file_paths
 
 DATE_REGEX = re.compile(r"[0-9]{3}")
 
@@ -30,7 +31,10 @@ class GoogleDocsDocumentReader:
     _GDOCS_TABLE_CELLS = "tableCells"
     _GDOCS_TABLE_OF_CONTENTS = "tableOfContents"
 
-    def __init__(self, output_folder: Path):
+    def __init__(
+        self,
+        output_folder: str,
+    ):
         """
         output_folder is expected to use this format:
 
