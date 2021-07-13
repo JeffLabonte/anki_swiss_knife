@@ -1,6 +1,9 @@
 import re
 from typing import List, Optional
 
+from anki_swiss_knife.constants import file_paths
+from anki_swiss_knife.helper import files
+
 
 class ChineseCSVGenerator:
     """
@@ -35,7 +38,9 @@ class ChineseCSVGenerator:
 
     def __init__(self, file_to_convert: str, extra_rules: Optional[List[str]] = None):
         self.file_to_convert = file_to_convert
+        self.csv_output_path = self._generate_csv_file_path()
         self.extra_rules = extra_rules
+        files.create_folder("/".join(self.csv_output_path.split("/")[:-1]))
 
     def _is_character_in_unicode(self, unicode_regex, character):
         return getattr(re.search(unicode_regex, character), "endpos", 0) != 0
