@@ -10,12 +10,12 @@ def setup_csv_generator(file_to_convert=None):
 def test__csv_generator__is_chinese_character__should_return_true_on_chinese_char():
     csv_generator = setup_csv_generator()
     chinese_char = "也"
-    assert csv_generator.has_chinese_charater_in_line(chinese_char) is True
+    assert csv_generator.has_chinese_character_in_line(chinese_char) is True
 
 
 def test__csv_generator__is_chinese_character__should_return_false_on_latin_char():
     csv_generator = setup_csv_generator()
-    assert csv_generator.has_chinese_charater_in_line("a") is False
+    assert csv_generator.has_chinese_character_in_line("a") is False
 
 
 @pytest.mark.parametrize(

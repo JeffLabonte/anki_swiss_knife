@@ -1,5 +1,5 @@
 import argparse
-from pathlib import Path
+import os
 
 from anki_swiss_knife.chinese_csv_generator import ChineseCSVGenerator
 from anki_swiss_knife.constants import file_paths
@@ -20,7 +20,7 @@ parser.add_argument(
     dest="output_folder",
     help="Where to create output folder",
     type=str,
-    default=Path.home(),
+    default=file_paths.DEFAULT_BASE_FOLDER,
 )
 
 if __name__ == "__main__":
@@ -29,9 +29,9 @@ if __name__ == "__main__":
     document_id = args.document_id
 
     print(f"[+] Extracting Google Docs Document ID: {document_id}")
-    output_folder_gdocs = args.output_folder if args.output_folder else file_paths.GOOGLE_DOC_FOLDER
+    gdocs_folder_path = os.path.join(args.output_folder, file_paths.GOOGLE_DOC_FOLDER_NAME)
 
-    google_docs = GoogleDocsDocumentReader(output_folder=output_folder_gdocs)
+    google_docs = GoogleDocsDocumentReader(output_folder=gdocs_folder_path)
     filepath = google_docs.extract_document_to_file(document_id=document_id)
 
     ChineseCSVGenerator(file_to_convert=filepath).generate_csv()
