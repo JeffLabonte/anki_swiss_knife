@@ -83,7 +83,7 @@ class ChineseCSVGenerator:
 
         return self._find_end_index_for_chinese_char(text=text)
 
-    def has_chinese_charater_in_line(self, line: str) -> bool:
+    def has_chinese_character_in_line(self, line: str) -> bool:
         chinese_chars = [
             character
             for character in line
@@ -107,7 +107,7 @@ class ChineseCSVGenerator:
 
     def generate_row(self, line: str) -> Optional[str]:
         if (
-            not self.has_chinese_charater_in_line(line=line)
+            not self.has_chinese_character_in_line(line=line)
             or not self.has_latin_character_in_line(line=line)
             or line.startswith("#")
         ):
