@@ -32,6 +32,6 @@ if __name__ == "__main__":
     gdocs_folder_path = os.path.join(args.output_folder, file_paths.GOOGLE_DOC_FOLDER_NAME)
 
     google_docs = GoogleDocsDocumentReader(output_folder=gdocs_folder_path)
-    filepath = google_docs.extract_document_to_file(document_id=document_id)
+    gdoc_filepath = google_docs.extract_document_to_file(document_id=document_id)
 
-    ChineseCSVGenerator(file_to_convert=filepath).generate_csv()
+    csv_filepath = ChineseCSVGenerator(file_to_convert=gdoc_filepath).generate_csv()
