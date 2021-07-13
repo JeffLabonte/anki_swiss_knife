@@ -6,25 +6,36 @@ from anki_swiss_knife.constants import file_paths
 from anki_swiss_knife.google_docs_document_reader import GoogleDocsDocumentReader
 
 
-parser = argparse.ArgumentParser(description="What document do you want to parse")
+def create_cli_parser():
+    parser = argparse.ArgumentParser(description="What document do you want to parse")
 
-parser.add_argument(
-    "--gdocs-document-id",
-    dest="document_id",
-    help="Google Docs Document ID you whish to extract",
-    type=str,
-    required=True,
-)
-parser.add_argument(
-    "--output-folder",
-    dest="output_folder",
-    help="Where to create output folder",
-    type=str,
-    default=file_paths.DEFAULT_BASE_FOLDER,
-)
+    parser.add_argument(
+        "--gdocs-document-id",
+        dest="document_id",
+        help="Google Docs Document ID you whish to extract",
+        type=str,
+        required=True,
+    )
+    parser.add_argument(
+        "--output-folder",
+        dest="output_folder",
+        help="Where to create output folder",
+        type=str,
+        default=file_paths.DEFAULT_BASE_FOLDER,
+    )
+
+    parser.add_argument(
+        "--text-to-speech",
+        dest="text_to_speech",
+        help="Do you want to generate a csv with text-to-speech?",
+        action="store_true",
+        default=False,
+    )
+    return parser
+
 
 if __name__ == "__main__":
-    args = parser.parse_args()
+    args = create_cli_parser().parse_args()
 
     document_id = args.document_id
 
@@ -35,3 +46,7 @@ if __name__ == "__main__":
     gdoc_filepath = google_docs.extract_document_to_file(document_id=document_id)
 
     csv_filepath = ChineseCSVGenerator(file_to_convert=gdoc_filepath).generate_csv()
+
+    if args.text_to_speech:
+        # TODO Run Text-to-speech code
+        pass
