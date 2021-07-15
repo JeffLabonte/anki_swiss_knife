@@ -2,6 +2,8 @@ import boto3
 
 
 class TextToSpeech:
+    OUTPUT_FORMAT = "mp3"
+
     def __init__(
         self,
         language_code: str,
