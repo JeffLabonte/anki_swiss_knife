@@ -1,4 +1,9 @@
+import os
+from pathlib import Path
+
 import boto3
+
+from anki_swiss_knife.helper import csv as helper_csv
 
 
 class TextToSpeech:
@@ -17,14 +22,37 @@ class TextToSpeech:
         """
         self.language_code = language_code
         self.voice_id = voice_id
+        self.csv_filepath = csv_filepath
         self.csv_with_speech_path = self._create_csv_with_speech_path(csv_filepath=csv_filepath)
         self._polly = boto3.client("polly")
 
     def generate_csv_with_speech(self):
-        pass
+        csv_contents = helper_csv.read_csv(file_path=self.csv_filepath)
+        for content in csv_contents:
+            audio_path = self.generate_sound(text=content.word)
+            content.speech = f"[sound:{audio_path}]"
 
-    def generate_sound(self, text: str):
-        pass
+        helper_csv.write_csv(contents=csv_contents, file_path=self.csv_with_speech_path)
+
+    def generate_sound(self, text: str) -> str:
+        response = self._polly.synthesize_speech(
+            LanguageCode=self.language_code,
+            OutputFormat=self.OUTPUT_FORMAT,
+            Text=text,
+            VoiceId=self.voice_id,
+        )
+        csv_folder = Path(self.csv_with_speech_path).parent
+        filename = self.csv_with_speech_path.replace(f"{csv_folder}/", "").split(".")[0]
+        filename_audio = f"{filename}_{text.replace('/', '')}.{self.OUTPUT_FORMAT}".replace(" ", "_")
+        # TODO create constant that makes more sense
+        anki_collection_media = os.path.join(Path.home(), ".local/share/Anki2/User 1/collection.media/")
+        filename_audio_path = os.path.join(anki_collection_media, filename_audio)
+
+        with open(filename_audio_path, "wb") as file:
+            print(f"[+] Writing {filename_audio}")
+            file.write(response["AudioStream"].read())
+
+        return filename_audio
 
     def _write_audio_file(self, filename: str, content: bytes) -> None:
         audio_path = f"{self.base_folder_path}/{filename}"

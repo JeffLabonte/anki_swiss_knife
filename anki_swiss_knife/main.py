@@ -54,4 +54,4 @@ if __name__ == "__main__":
             voice_id=languages.CHINESE_VOICE_ID,
             csv_filepath=csv_filepath,
         )
-        text_to_speech.generate_sound()
+        text_to_speech.generate_csv_with_speech()

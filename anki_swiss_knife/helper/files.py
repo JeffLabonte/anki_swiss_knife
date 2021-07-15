@@ -1,10 +1,9 @@
-import os
+from pathlib import Path
 from typing import Generator
 
 
 def create_folder(file_path: str) -> None:
-    if not os.path.exists(file_path):
-        os.mkdir(file_path)
+    Path(file_path).mkdir(parents=True, exist_ok=True)
 
 
 def read_file(file_path: str) -> Generator:
