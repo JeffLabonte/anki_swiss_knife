@@ -2,8 +2,9 @@ import argparse
 import os
 
 from anki_swiss_knife.chinese_csv_generator import ChineseCSVGenerator
-from anki_swiss_knife.constants import file_paths
+from anki_swiss_knife.constants import file_paths, languages
 from anki_swiss_knife.google_docs_document_reader import GoogleDocsDocumentReader
+from anki_swiss_knife.text_to_speech import TextToSpeech
 
 
 def create_cli_parser():
@@ -48,5 +49,9 @@ if __name__ == "__main__":
     csv_filepath = ChineseCSVGenerator(file_to_convert=gdoc_filepath).generate_csv()
 
     if args.text_to_speech:
-        # TODO Run Text-to-speech code
-        pass
+        text_to_speech = TextToSpeech(
+            language_code=languages.CHINESE_LANGUAGE_CODE,
+            voice_id=languages.CHINESE_VOICE_ID,
+            base_folder_path=csv_filepath,
+        )
+        text_to_speech.generate_sound()
