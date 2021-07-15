@@ -8,7 +8,7 @@ class TextToSpeech:
         self,
         language_code: str,
         voice_id: str,
-        base_folder_path: str,
+        csv_filepath: str,
     ):
         """
         https://docs.aws.amazon.com/polly/latest/dg/voicelist.html
