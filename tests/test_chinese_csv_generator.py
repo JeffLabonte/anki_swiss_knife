@@ -1,10 +1,13 @@
+from unittest.mock import patch
+
 import pytest
 
 from anki_swiss_knife.chinese_csv_generator import ChineseCSVGenerator
 
 
-def setup_csv_generator(file_to_convert=None):
-    return ChineseCSVGenerator(file_to_convert=file_to_convert)
+def setup_csv_generator(file_to_convert=""):
+    with patch("anki_swiss_knife.chinese_csv_generator.files.create_folder"):
+        return ChineseCSVGenerator(file_to_convert=file_to_convert)
 
 
 def test__csv_generator__is_chinese_character__should_return_true_on_chinese_char():
