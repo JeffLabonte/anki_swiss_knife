@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 PROJECT_NAME = "anki-swiss-knife"
