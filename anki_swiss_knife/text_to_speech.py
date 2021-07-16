@@ -3,6 +3,7 @@ from pathlib import Path
 
 import boto3
 
+from anki_swiss_knife.constants import base
 from anki_swiss_knife.helper import csv as helper_csv
 
 
@@ -34,7 +35,7 @@ class TextToSpeech:
 
         helper_csv.write_csv(contents=csv_contents, file_path=self.csv_with_speech_path)
 
-    def generate_sound(self, text: str) -> str:
+    def generate_sound(self, text: str, anki_user: str = base.DEFAULT_ANKI_USER) -> str:
         response = self._polly.synthesize_speech(
             LanguageCode=self.language_code,
             OutputFormat=self.OUTPUT_FORMAT,
@@ -44,8 +45,7 @@ class TextToSpeech:
         csv_folder = Path(self.csv_with_speech_path).parent
         filename = self.csv_with_speech_path.replace(f"{csv_folder}/", "").split(".")[0]
         filename_audio = f"{filename}_{text.replace('/', '')}.{self.OUTPUT_FORMAT}".replace(" ", "_")
-        # TODO create constant that makes more sense
-        anki_collection_media = os.path.join(Path.home(), ".local/share/Anki2/User 1/collection.media/")
+        anki_collection_media = os.path.join(Path.home(), base.COLLECTION_MEDIA_LINUX_PATH.format(anki_user=anki_user))
         filename_audio_path = os.path.join(anki_collection_media, filename_audio)
 
         with open(filename_audio_path, "wb") as file:
