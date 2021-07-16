@@ -7,4 +7,4 @@ CSV_DELIMITER = ";"
 
 DEFAULT_ANKI_USER = "User 1"
 
-COLLECTION_MEDIA_LINUX_PATH = os.path.join(Path.home(), ".local/share/Anki1/{anki_user}/collection.media/")
+COLLECTION_MEDIA_LINUX_PATH = os.path.join(Path.home(), ".local/share/Anki2/{anki_user}/collection.media/")
