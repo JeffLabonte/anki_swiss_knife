@@ -11,9 +11,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - uses: Gr1N/setup-poetry@v7
@@ -26,4 +24,5 @@ jobs:
         poetry install
     - name: Test with pytest
       run: |
-        poetry shell pytest
+        poetry shell
+        pytest
