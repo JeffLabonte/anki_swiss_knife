@@ -31,6 +31,7 @@ class TextToSpeech:
 
     def generate_csv_with_speech(self):
         csv_contents = helper_csv.read_csv(file_path=self.csv_filepath)
+
         for index, content in enumerate(csv_contents):
             audio_path = self.generate_sound(text=content.word)
             content.speech = f"[sound:{audio_path}]"
