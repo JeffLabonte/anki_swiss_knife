@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 import boto3
+import progressbar
 
 from anki_swiss_knife.constants import base
 from anki_swiss_knife.helper import csv as helper_csv
@@ -26,12 +27,14 @@ class TextToSpeech:
         self.csv_filepath = csv_filepath
         self.csv_with_speech_path = self._create_csv_with_speech_path(csv_filepath=csv_filepath)
         self._polly = boto3.client("polly")
+        self._progress_bar = progressbar.ProgressBar(max_value=progressbar.UnknownLength)
 
     def generate_csv_with_speech(self):
         csv_contents = helper_csv.read_csv(file_path=self.csv_filepath)
-        for content in csv_contents:
+        for index, content in enumerate(csv_contents):
             audio_path = self.generate_sound(text=content.word)
             content.speech = f"[sound:{audio_path}]"
+            self._progress_bar.update(index)
 
         helper_csv.write_csv(contents=csv_contents, file_path=self.csv_with_speech_path)
 
@@ -49,7 +52,6 @@ class TextToSpeech:
         filename_audio_path = os.path.join(anki_collection_media, filename_audio)
 
         with open(filename_audio_path, "wb") as file:
-            print(f"[+] Writing {filename_audio}")
             file.write(response["AudioStream"].read())
 
         return filename_audio
