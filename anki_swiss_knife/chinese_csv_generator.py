@@ -3,6 +3,7 @@ from typing import List, Optional
 
 from anki_swiss_knife.constants import file_paths
 from anki_swiss_knife.helper import files
+from anki_swiss_knife.language_validator.chinese_validator import ChineseValidator
 
 
 class ChineseCSVGenerator:
@@ -40,6 +41,7 @@ class ChineseCSVGenerator:
         self.file_to_convert = file_to_convert
         self.csv_output_path = self._generate_csv_file_path()
         self.extra_rules = extra_rules
+        self.validator = ChineseValidator()
         files.create_folder("/".join(self.csv_output_path.split("/")[:-1]))
 
     def _is_character_in_unicode(self, unicode_regex, character):
