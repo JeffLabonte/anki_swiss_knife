@@ -1,9 +1,8 @@
-import re
 from typing import List, Optional
 
 from anki_swiss_knife.constants import file_paths
 from anki_swiss_knife.helper import files
-from anki_swiss_knife.language_validator.chinese_validator import ChineseValidator
+from anki_swiss_knife.language_validator.chinese_characters_validator import ChineseCharacterValidator
 
 
 class ChineseCSVGenerator:
@@ -41,11 +40,8 @@ class ChineseCSVGenerator:
         self.file_to_convert = file_to_convert
         self.csv_output_path = self._generate_csv_file_path()
         self.extra_rules = extra_rules
-        self.validator = ChineseValidator()
+        self.validator = ChineseCharacterValidator()
         files.create_folder("/".join(self.csv_output_path.split("/")[:-1]))
-
-    def _is_character_in_unicode(self, unicode_regex, character):
-        return getattr(re.search(unicode_regex, character), "endpos", 0) != 0
 
     def _remove_unwanted_text(self, text: str) -> str:
         text = text.lstrip(",").lstrip(" ")
@@ -63,8 +59,7 @@ class ChineseCSVGenerator:
     def _find_end_index_for_chinese_char(self, text: str) -> int:
         for index, character in enumerate(text):
             if (
-                self._is_character_in_unicode(
-                    unicode_regex=self.LATIN_UNICODES,
+                self.validator.is_latin_character(
                     character=character,
                 )
                 and not character.isdigit()
@@ -77,8 +72,7 @@ class ChineseCSVGenerator:
             indexes.sort(reverse=True)
             first_column_index = indexes[0]
             for index, character in enumerate(text[first_column_index:]):
-                if self._is_character_in_unicode(
-                    unicode_regex=self.LATIN_UNICODES,
+                if self.validator.is_latin_character(
                     character=character,
                 ):
                     return first_column_index + index
@@ -89,8 +83,7 @@ class ChineseCSVGenerator:
         chinese_chars = [
             character
             for character in line
-            if self._is_character_in_unicode(
-                unicode_regex=self.CHINESE_UNICODES,
+            if self.validator.is_chinese_character(
                 character=character,
             )
         ]
@@ -100,8 +93,7 @@ class ChineseCSVGenerator:
         latin_chars = [
             character
             for character in line
-            if self._is_character_in_unicode(
-                unicode_regex=self.LATIN_UNICODES,
+            if self.validator.is_latin_character(
                 character=character,
             )
         ]
