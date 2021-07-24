@@ -1,7 +1,7 @@
-from anki_swiss_knife.language_validator.base_validator import BaseValidator
+from anki_swiss_knife.language_validator.base_character_validator import BaseCharacterValidator
 
 
-class ChineseValidator(BaseValidator):
+class ChineseCharacterValidator(BaseCharacterValidator):
     CHINESE_UNICODES = "[\u4e00-\u9FFF]"
     LATIN_UNICODES = "[\u0000-\u007F]"
 

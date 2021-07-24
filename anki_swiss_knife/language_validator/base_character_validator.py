@@ -1,7 +1,7 @@
 import re
 
 
-class BaseValidator:
+class BaseCharacterValidator:
 
     NOT_FOUND_RE_SEARCH = 0
 
