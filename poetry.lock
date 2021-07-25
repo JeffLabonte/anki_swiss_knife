@@ -764,10 +764,21 @@ category = "dev"
 optional = false
 python-versions = "*"
 
+[[package]]
+name = "xpinyin"
+version = "0.7.6"
+description = "Translate Chinese hanzi to pinyin (拼音) by Python, 汉字转拼音"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+test = ["pytest (>=6.2.0)"]
+
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "23c63183f32d1d88c148600c75d8edd526b5040fd9859490adb39bee8bbd5de5"
+content-hash = "4923bd909054061d10fe53f888cdbdbc4914bef41cbc15be0f245e90934a8ed9"
 
 [metadata.files]
 appdirs = [
@@ -1241,4 +1252,8 @@ wcwidth = [
 ]
 wrapt = [
     {file = "wrapt-1.12.1.tar.gz", hash = "sha256:b62ffa81fb85f4332a4f609cab4ac40709470da05643a082ec1eb88e6d9b97d7"},
+]
+xpinyin = [
+    {file = "xpinyin-0.7.6-py3-none-any.whl", hash = "sha256:1d78eac9f612c20e155d7c3eb9dd7f9d3ec4e2667c52049e990b8bd036171a52"},
+    {file = "xpinyin-0.7.6.tar.gz", hash = "sha256:dec6aa0f4d9f9b6788d8131245293f1951180333a6d474b467b2d556221862fe"},
 ]
