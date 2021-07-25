@@ -49,11 +49,11 @@ class ChineseCSVGenerator:
             text = text.replace(remove, "").lstrip(" ")
         return text
 
-    def _find_end_index_for_text_to_keep(self, text: str) -> List[int]:
+    def _find_text_to_keep_index_from_phrase(self, phrase: str) -> List[int]:
         return [
-            text.index(text_to_keep) + len(text_to_keep)
+            phrase.index(text_to_keep) + len(text_to_keep)
             for index, text_to_keep in enumerate(self.TEXT_TO_KEEP_IN_FIRST_COLUMN)
-            if text_to_keep in text
+            if text_to_keep in phrase
         ]
 
     def _find_end_index_for_chinese_char(self, text: str) -> int:
@@ -67,7 +67,7 @@ class ChineseCSVGenerator:
                 return index
 
     def find_first_column_ends(self, text: str) -> int:
-        indexes = self._find_end_index_for_text_to_keep(text=text)
+        indexes = self._find_text_to_keep_index_from_phrase(phrase=text)
         if indexes:
             indexes.sort(reverse=True)
             first_column_index = indexes[0]
