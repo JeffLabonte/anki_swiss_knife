@@ -10,12 +10,7 @@ google-api-python-client = "^2.9.0"
 google-auth-httplib2 = "^0.1.0"
 google-auth-oauthlib = "^0.4.4"
 boto3 = "^1.17.105"
-polyglot = "^16.7.4"
 progressbar2 = "^3.53.1"
-numpy = "^1.21.1"
-PyICU = "^2.7.4"
-pycld2 = "^0.41"
-Morfessor = "^2.0.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
