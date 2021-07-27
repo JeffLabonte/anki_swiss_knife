@@ -33,13 +33,10 @@ class AnkiChineseCardBuilder:
 
     TEXT_TO_REMOVE = ("(future tense)",)
 
-    CHINESE_UNICODES = "[\u4e00-\u9FFF]"
-    LATIN_UNICODES = "[\u0000-\u007F]"
-
-    def __init__(self, file_to_convert: str, extra_rules: Optional[List[str]] = None):
+    def __init__(self, file_to_convert: str, is_chinese_first_column: bool = True):
         self.file_to_convert = file_to_convert
         self.csv_output_path = self._generate_csv_file_path()
-        self.extra_rules = extra_rules
+        self.is_chinese_first_column = is_chinese_first_column
         self.validator = ChineseCharacterValidator()
         files.create_folder("/".join(self.csv_output_path.split("/")[:-1]))
 
