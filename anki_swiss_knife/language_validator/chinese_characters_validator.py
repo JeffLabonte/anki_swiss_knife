@@ -17,11 +17,26 @@ class ChineseCharacterValidator(BaseCharacterValidator):
             character=character,
         )
 
-    def has_latin_character_in_line(self, line: str):
-        return [
-            character
-            for character in line
-            if self.is_latin_character(
-                character=character,
-            )
-        ] != []
+    def has_latin_character_in_line(self, line: str) -> bool:
+        return bool(
+            [
+                character
+                for character in line
+                if self.is_latin_character(
+                    character=character,
+                )
+            ]
+            != []
+        )
+
+    def has_chinese_character_in_line(self, line: str) -> bool:
+        return bool(
+            [
+                character
+                for character in line
+                if self.is_chinese_character(
+                    character=character,
+                )
+            ]
+            != []
+        )
