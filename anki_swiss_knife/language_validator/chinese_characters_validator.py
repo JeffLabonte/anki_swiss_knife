@@ -16,3 +16,12 @@ class ChineseCharacterValidator(BaseCharacterValidator):
             unicode_regex=self.LATIN_UNICODES,
             character=character,
         )
+
+    def has_latin_character_in_line(self, line: str):
+        return [
+            character
+            for character in line
+            if self.is_latin_character(
+                character=character,
+            )
+        ] != []
