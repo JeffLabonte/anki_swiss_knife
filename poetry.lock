@@ -581,6 +581,17 @@ checkqa-mypy = ["mypy (==v0.761)"]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
 [[package]]
+name = "pytest-testdox"
+version = "2.0.1"
+description = "A testdox format reporter for pytest"
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+pytest = ">=3.7.0"
+
+[[package]]
 name = "python-dateutil"
 version = "2.8.2"
 description = "Extensions to the standard Python datetime module"
@@ -778,7 +789,7 @@ test = ["pytest (>=6.2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "4923bd909054061d10fe53f888cdbdbc4914bef41cbc15be0f245e90934a8ed9"
+content-hash = "fd1633b30a537cc2ca6fd92cf884fb16801ac961031058e061181abf1a93f553"
 
 [metadata.files]
 appdirs = [
@@ -1118,6 +1129,10 @@ pyparsing = [
 pytest = [
     {file = "pytest-5.4.3-py3-none-any.whl", hash = "sha256:5c0db86b698e8f170ba4582a492248919255fcd4c79b1ee64ace34301fb589a1"},
     {file = "pytest-5.4.3.tar.gz", hash = "sha256:7979331bfcba207414f5e1263b5a0f8f521d0f457318836a7355531ed1a4c7d8"},
+]
+pytest-testdox = [
+    {file = "pytest-testdox-2.0.1.tar.gz", hash = "sha256:5cd1d986cb9e33edca4271c57541c57d868781c8090e551374d7e6eeafac465a"},
+    {file = "pytest_testdox-2.0.1-py2.py3-none-any.whl", hash = "sha256:ce9d516c047f718e7707975582e52d6ac922330bdcf87837f8d3fd619057af6f"},
 ]
 python-dateutil = [
     {file = "python-dateutil-2.8.2.tar.gz", hash = "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"},

@@ -6,19 +6,8 @@ from anki_swiss_knife.anki_chinese_card_builder import AnkiChineseCardBuilder
 
 
 def setup_csv_generator(file_to_convert=""):
-    with patch("anki_swiss_knife.chinese_csv_generator.files.create_folder"):
+    with patch("anki_swiss_knife.anki_chinese_card_builder.files.create_folder"):
         return AnkiChineseCardBuilder(file_to_convert=file_to_convert)
-
-
-def test__csv_generator__is_chinese_character__should_return_true_on_chinese_char():
-    csv_generator = setup_csv_generator()
-    chinese_char = "也"
-    assert csv_generator.has_chinese_character_in_line(chinese_char) is True
-
-
-def test__csv_generator__is_chinese_character__should_return_false_on_latin_char():
-    csv_generator = setup_csv_generator()
-    assert csv_generator.has_chinese_character_in_line("a") is False
 
 
 @pytest.mark.parametrize(

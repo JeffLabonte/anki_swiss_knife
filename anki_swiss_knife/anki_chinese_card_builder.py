@@ -1,5 +1,7 @@
 from typing import List, Optional
 
+from xpinyin import Pinyin
+
 from anki_swiss_knife.constants import file_paths
 from anki_swiss_knife.helper import files
 from anki_swiss_knife.language_validator.chinese_characters_validator import ChineseCharacterValidator
@@ -38,6 +40,7 @@ class AnkiChineseCardBuilder:
         self.csv_output_path = self._generate_csv_file_path()
         self.is_chinese_first_column = is_chinese_first_column
         self.validator = ChineseCharacterValidator()
+        self.pinyin = Pinyin()
         files.create_folder("/".join(self.csv_output_path.split("/")[:-1]))
 
     def _remove_unwanted_text(self, text: str) -> str:
