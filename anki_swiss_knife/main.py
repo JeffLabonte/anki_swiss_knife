@@ -1,7 +1,7 @@
 import argparse
 import os
 
-from anki_swiss_knife.chinese_csv_generator import ChineseCSVGenerator
+from anki_swiss_knife.anki_chinese_card_builder import AnkiChineseCardBuilder
 from anki_swiss_knife.constants import file_paths, languages
 from anki_swiss_knife.google_docs_document_reader import GoogleDocsDocumentReader
 from anki_swiss_knife.text_to_speech import TextToSpeech
@@ -46,7 +46,7 @@ if __name__ == "__main__":
     google_docs = GoogleDocsDocumentReader(output_folder=gdocs_folder_path)
     gdoc_filepath = google_docs.extract_document_to_file(document_id=document_id)
 
-    csv_filepath = ChineseCSVGenerator(file_to_convert=gdoc_filepath).generate_csv()
+    csv_filepath = AnkiChineseCardBuilder(file_to_convert=gdoc_filepath).generate_csv()
 
     if args.text_to_speech:
         text_to_speech = TextToSpeech(

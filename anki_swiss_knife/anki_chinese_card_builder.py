@@ -5,7 +5,7 @@ from anki_swiss_knife.helper import files
 from anki_swiss_knife.language_validator.chinese_characters_validator import ChineseCharacterValidator
 
 
-class ChineseCSVGenerator:
+class AnkiChineseCardBuilder:
     """
     Generate rows formatted for CSV. Using `;` as its delimiter
 
