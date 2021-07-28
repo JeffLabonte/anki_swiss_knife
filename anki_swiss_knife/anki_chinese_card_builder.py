@@ -1,3 +1,4 @@
+import re
 from typing import List, Optional
 
 from xpinyin import Pinyin
@@ -5,6 +6,8 @@ from xpinyin import Pinyin
 from anki_swiss_knife.constants import file_paths
 from anki_swiss_knife.helper import files
 from anki_swiss_knife.language_validator.chinese_characters_validator import ChineseCharacterValidator
+
+ENGLISH_TEXT_REGEX = re.compile(r"[a-zA-Z ]+[?! ]?")
 
 
 class AnkiChineseCardBuilder:
@@ -78,6 +81,18 @@ class AnkiChineseCardBuilder:
                     return first_column_index + index
 
         return self._find_end_index_for_chinese_char(text=text)
+
+    def extract_english_sentence(self, chinese_char: str, rest_of_sentence: str) -> str:
+        unmarked_pinyin = self.pinyin.get_pinyin(chinese_char).split("-")
+        marked_pinyin = self.pinyin.get_pinyin(chinese_char, tone_marks="marks").split("-")
+        number_pinyin = self.pinyin.get_pinyin(chinese_char, tone_marks="numbers").split("-")
+        all_pinyins = marked_pinyin + number_pinyin + unmarked_pinyin
+
+        for pinyin in all_pinyins:
+            rest_of_sentence = rest_of_sentence.replace(pinyin, "")
+
+        english_sentence = ENGLISH_TEXT_REGEX.findall(rest_of_sentence.strip("\n"))[-1]
+        return english_sentence.lstrip(" ")
 
     def generate_row(self, line: str) -> Optional[str]:
         if (

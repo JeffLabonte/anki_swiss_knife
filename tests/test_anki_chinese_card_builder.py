@@ -5,7 +5,7 @@ import pytest
 from anki_swiss_knife.anki_chinese_card_builder import AnkiChineseCardBuilder
 
 
-def setup_csv_generator(file_to_convert=""):
+def setup_anki_chinese_card_builder(file_to_convert=""):
     with patch("anki_swiss_knife.anki_chinese_card_builder.files.create_folder"):
         return AnkiChineseCardBuilder(file_to_convert=file_to_convert)
 
@@ -18,8 +18,8 @@ def setup_csv_generator(file_to_convert=""):
             "要 + V.;will, be going to + V.\n",
         ),
         (
-            "放假 fàngjià (v./n.) vacation",
-            "放假;fàngjià (v./n.) vacation\n",
+            "放假 fàngjiǎ (v./n.) vacation",
+            "放假;fàngjiǎ (v./n.) vacation\n",
         ),
         (
             "第一 + measure word, dìyī + measure first",
@@ -63,11 +63,33 @@ def setup_csv_generator(file_to_convert=""):
         ),
     ],
 )
-def test__csv_generator__generator_row__should_return_expected_format(
+def test__anki_chinese_card_builder__generator_row__should_return_expected_format(
     line,
     expected_result,
 ):
-    csv_generator = setup_csv_generator()
+    anki_chinese_card_builder = setup_anki_chinese_card_builder()
 
-    result = csv_generator.generate_row(line=line)
+    result = anki_chinese_card_builder.generate_row(line=line)
+    assert result == expected_result
+
+
+@pytest.mark.parametrize(
+    "chinese_char, rest_of_sentence, expected_result",
+    [
+        (
+            "哪一季你最喜欢？nǎ yí jì nǐ zuì xǐhuān? Which season do you like best?",
+            "nǎ yī jì nǐ zuì xǐhuān? Which season do you like best?",
+            "Which season do you like best?",
+        )
+    ],
+)
+def test__anki_chinese_card_builder__extract_english_sentence__should_have_only_english(
+    chinese_char,
+    rest_of_sentence,
+    expected_result,
+):
+    anki_chinese_card_builder = setup_anki_chinese_card_builder()
+    result = anki_chinese_card_builder.extract_english_sentence(
+        chinese_char=chinese_char, rest_of_sentence=rest_of_sentence
+    )
     assert result == expected_result
