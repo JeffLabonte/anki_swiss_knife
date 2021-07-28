@@ -1,4 +1,4 @@
-[![Python application](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/test.yml/badge.svg)](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/test.yml) [![Lint](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/black.yml/badge.svg)](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/black.yml)
+[![CI](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/ci.yml/badge.svg)](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/ci.yml) [![Lint](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/black.yml/badge.svg)](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/black.yml)
 
 ## Anki Swiss Knife
 
