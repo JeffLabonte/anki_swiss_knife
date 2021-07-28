@@ -1,2 +1,2 @@
 test:
-	poetry run pytest --testdox
+	poetry run pytest --cov=./ --testdox
