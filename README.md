@@ -1,4 +1,5 @@
-[![CI](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/ci.yml/badge.svg)](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/ci.yml) [![Lint](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/black.yml/badge.svg)](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/black.yml)
+[![CI](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/ci.yml/badge.svg)](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/ci.yml) [![Lint](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/black.yml/badge.svg)](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/black.yml) [![codecov](https://codecov.io/gh/JeffLabonte/anki_swiss_knife/branch/main/graph/badge.svg?token=976XZBSN8I)](https://codecov.io/gh/JeffLabonte/anki_swiss_knife)
+
 
 ## Anki Swiss Knife
 
