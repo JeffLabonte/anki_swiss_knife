@@ -7,7 +7,6 @@ from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
 from anki_swiss_knife.helper import files
-from anki_swiss_knife.constants import file_paths
 
 DATE_REGEX = re.compile(r"[0-9]{3}")
 
