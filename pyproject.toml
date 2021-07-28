@@ -6,10 +6,10 @@ authors = ["Jeff Labonte <grimsleepless@protonmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-google-api-python-client = "^2.9.0"
+google-api-python-client = "^2.15.0"
 google-auth-httplib2 = "^0.1.0"
 google-auth-oauthlib = "^0.4.4"
-boto3 = "^1.17.105"
+boto3 = "^1.18.8"
 progressbar2 = "^3.53.1"
 xpinyin = "^0.7.6"
 
