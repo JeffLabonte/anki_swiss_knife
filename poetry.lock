@@ -560,7 +560,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
 name = "pylint"
-version = "2.9.5"
+version = "2.9.6"
 description = "python code static checker"
 category = "dev"
 optional = false
@@ -835,7 +835,7 @@ test = ["pytest (>=6.2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "bd50e04bc4f1b0fea377e8bc5cba6787801f158f4499669821979dda85ac7bc3"
+content-hash = "68e4492df881a8dabed53c69e582197c471bcdbb7108e671139503e8f08b429c"
 
 [metadata.files]
 appdirs = [
@@ -1228,8 +1228,8 @@ pyflakes = [
     {file = "pyflakes-2.3.1.tar.gz", hash = "sha256:f5bc8ecabc05bb9d291eb5203d6810b49040f6ff446a756326104746cc00c1db"},
 ]
 pylint = [
-    {file = "pylint-2.9.5-py3-none-any.whl", hash = "sha256:748f81e5776d6273a6619506e08f1b48ff9bcb8198366a56821cf11aac14fc87"},
-    {file = "pylint-2.9.5.tar.gz", hash = "sha256:1f333dc72ef7f5ea166b3230936ebcfb1f3b722e76c980cb9fe6b9f95e8d3172"},
+    {file = "pylint-2.9.6-py3-none-any.whl", hash = "sha256:2e1a0eb2e8ab41d6b5dbada87f066492bb1557b12b76c47c2ee8aa8a11186594"},
+    {file = "pylint-2.9.6.tar.gz", hash = "sha256:8b838c8983ee1904b2de66cce9d0b96649a91901350e956d78f289c3bc87b48e"},
 ]
 pynvim = [
     {file = "pynvim-0.4.3.tar.gz", hash = "sha256:3a795378bde5e8092fbeb3a1a99be9c613d2685542f1db0e5c6fd467eed56dff"},
