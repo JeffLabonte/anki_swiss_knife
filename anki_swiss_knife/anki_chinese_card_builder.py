@@ -133,11 +133,10 @@ class AnkiChineseCardBuilder:
 
         index = self.find_first_column_ends(text=line)
 
-        chinese_chars = self._remove_unwanted_text(text=line[0:index])
-        rest_of_sentence = self._remove_unwanted_text(text=line[index:])
+        chinese_chars = self._remove_unwanted_text(line[0:index])
         english_translation, pinyin = self.split_english_and_pinyin(
             chinese_char=chinese_chars,
-            rest_of_sentence=rest_of_sentence,
+            rest_of_sentence=self._remove_unwanted_text(line[index:]),
         )
         chinese_anki_card = ChineseAnkiCard(
             chinese_character=chinese_chars,
