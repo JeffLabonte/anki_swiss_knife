@@ -15,15 +15,15 @@ def setup_anki_chinese_card_builder(file_to_convert=""):
     [
         (
             "要 + V. (future tense) will, be going to + V.",
-            "要 + V.;will, be going to + V.\n",
+            "要 + V.;yào\nwill, be going to",
         ),
         (
-            "放假 fàngjiǎ (v./n.) vacation",
-            "放假;fàngjiǎ (v./n.) vacation\n",
+            "放假 (v./n.) fàng jiǎ (v./n.) vacation",
+            "放假 (v./n.);fàng jiǎ\nvacation",
         ),
         (
-            "第一 + measure word, dìyī + measure first",
-            "第一 + measure word;dìyī + measure first\n",
+            "第一 + measure word, dì yī + measure word first",
+            "第一 + measure word;dì yī\nfirst",
         ),
         (
             "No chinese Character",
@@ -39,27 +39,27 @@ def setup_anki_chinese_card_builder(file_to_convert=""):
         ),
         (
             "哪一季你最喜欢？nǎ yí jì nǐ zuì xǐhuān? Which season do you like best?",
-            "哪一季你最喜欢？;nǎ yí jì nǐ zuì xǐhuān? Which season do you like best?\n",
+            "哪一季你最喜欢？;nǎ yī jì nǐ zuì xǐ huān ？\nWhich season do you like best?",
         ),
         (
             "4个人一车 4 Gèrén yī chē 4 person in a car",
-            "4个人一车;4 Gèrén yī chē 4 person in a car\n",
+            "4个人一车;4 gè rén yī chē\n4 person in a car",
         ),
         (
             "12个人一队 12 ge rén yí duì 12 persons in a team",
-            "12个人一队;12 ge rén yí duì 12 persons in a team\n",
+            "12个人一队;12 gè rén yī duì\n12 persons in a team",
         ),
         (
             "V. + 了 past tense (you did something)",
-            "V. + 了;past tense (you did something)\n",
+            "V. + 了;le\nyou did something",
         ),
         (
             "你看过Harry Potter吗？Nǐ kànguò Harry Potter ma? Have you seen Harry Potter?",
-            "你看过Harry Potter吗？;Nǐ kànguò Harry Potter ma? Have you seen Harry Potter?\n",
+            "你看过Harry Potter吗？;nǐ kàn guò Harry Potter ma ？\nHave you seen Harry Potter?",
         ),
         (
             "今天(是)星期六 Jīntiān (shì) xīngqíliù Today is Saturday",
-            "今天(是)星期六;Jīntiān (shì) xīngqíliù Today is Saturday\n",
+            "今天(是)星期六;jīn tiān xīng qī liù\nToday is Saturday",
         ),
     ],
 )
@@ -89,7 +89,7 @@ def test__anki_chinese_card_builder__extract_english_sentence__should_have_only_
     expected_result,
 ):
     anki_chinese_card_builder = setup_anki_chinese_card_builder()
-    result = anki_chinese_card_builder.extract_english_sentence(
+    english, pinyin = anki_chinese_card_builder.split_english_and_pinyin(
         chinese_char=chinese_char, rest_of_sentence=rest_of_sentence
     )
-    assert result == expected_result
+    assert english == expected_result

@@ -3,11 +3,12 @@ from typing import List, Optional
 
 from xpinyin import Pinyin
 
+from anki_swiss_knife.anki.anki_card import ChineseAnkiCard
 from anki_swiss_knife.constants import file_paths
 from anki_swiss_knife.helper import files
 from anki_swiss_knife.language_validator.chinese_characters_validator import ChineseCharacterValidator
 
-ENGLISH_TEXT_REGEX = re.compile(r"[a-zA-Z ]+[?! ]?")
+ENGLISH_TEXT_REGEX = re.compile(r"[a-zA-Z1-9+., ]+[?! ]?")
 
 
 class AnkiChineseCardBuilder:
@@ -17,11 +18,12 @@ class AnkiChineseCardBuilder:
     This class works only for chinese character
     """
 
-    TEXT_TO_KEEP_IN_FIRST_COLUMN = (
+    TEXT_TO_KEEP = (
         " + V.",
         "+ V.",
         "+V.",
         " + measure word",
+        "+ measure word",
         "+measure word",
         "SF",
         "Quebec City",
@@ -34,7 +36,15 @@ class AnkiChineseCardBuilder:
         "Ajd. / V.  + ",
         "(是)",
         "，",
+        "(v./n.)",
     )
+
+    NAMES = {
+        "Harry Potter",
+        "SF",
+        "Quebec City",
+        "Star Wars",
+    }
 
     TEXT_TO_REMOVE = ("(future tense)",)
 
@@ -55,7 +65,7 @@ class AnkiChineseCardBuilder:
     def _find_text_to_keep_index_from_phrase(self, phrase: str) -> List[int]:
         return [
             phrase.index(text_to_keep) + len(text_to_keep)
-            for index, text_to_keep in enumerate(self.TEXT_TO_KEEP_IN_FIRST_COLUMN)
+            for index, text_to_keep in enumerate(self.TEXT_TO_KEEP)
             if text_to_keep in phrase
         ]
 
@@ -82,17 +92,35 @@ class AnkiChineseCardBuilder:
 
         return self._find_end_index_for_chinese_char(text=text)
 
-    def extract_english_sentence(self, chinese_char: str, rest_of_sentence: str) -> str:
-        unmarked_pinyin = self.pinyin.get_pinyin(chinese_char).split("-")
-        marked_pinyin = self.pinyin.get_pinyin(chinese_char, tone_marks="marks").split("-")
-        number_pinyin = self.pinyin.get_pinyin(chinese_char, tone_marks="numbers").split("-")
+    def remove_text_to_keep(self, characters_to_sanitize: str) -> str:
+        for character_to_remove in self.TEXT_TO_KEEP:
+            if character_to_remove not in self.NAMES:
+                characters_to_sanitize = characters_to_sanitize.replace(character_to_remove, "")
+        return characters_to_sanitize
+
+    def split_english_and_pinyin(self, chinese_char: str, rest_of_sentence: str) -> str:
+        sanitized_chinese_char = self.remove_text_to_keep(characters_to_sanitize=chinese_char)
+
+        unmarked_pinyin = self.pinyin.get_pinyin(sanitized_chinese_char).split("-")
+        marked_pinyin = self.pinyin.get_pinyin(sanitized_chinese_char, tone_marks="marks").split("-")
+        number_pinyin = self.pinyin.get_pinyin(sanitized_chinese_char, tone_marks="numbers").split("-")
         all_pinyins = marked_pinyin + number_pinyin + unmarked_pinyin
 
+        english_translation = rest_of_sentence
         for pinyin in all_pinyins:
-            rest_of_sentence = rest_of_sentence.replace(pinyin, "")
+            if pinyin.isalpha():
+                english_translation = english_translation.replace(pinyin, "")
 
-        english_sentence = ENGLISH_TEXT_REGEX.findall(rest_of_sentence.strip("\n"))[-1]
-        return english_sentence.lstrip(" ")
+        try:
+            english_sentence = ENGLISH_TEXT_REGEX.findall(english_translation.strip("\n"))
+            if english_sentence:
+                return self.remove_text_to_keep(english_sentence[-1]).lstrip(), " ".join(marked_pinyin).rstrip()
+
+            pass
+        except IndexError as e:
+            print(f"Something went wrong: {e}\nPinyin with english: {rest_of_sentence}\n")
+            print(f"Pinyin Detected: {all_pinyins}")
+            raise
 
     def generate_row(self, line: str) -> Optional[str]:
         if (
@@ -107,8 +135,17 @@ class AnkiChineseCardBuilder:
 
         chinese_chars = self._remove_unwanted_text(text=line[0:index])
         rest_of_sentence = self._remove_unwanted_text(text=line[index:])
+        english_translation, pinyin = self.split_english_and_pinyin(
+            chinese_char=chinese_chars,
+            rest_of_sentence=rest_of_sentence,
+        )
+        chinese_anki_card = ChineseAnkiCard(
+            chinese_character=chinese_chars,
+            pinyin=pinyin,
+            translation=english_translation,
+        )
 
-        return f"{chinese_chars};{rest_of_sentence}\n"
+        return chinese_anki_card.to_csv(is_chinese_first=self.is_chinese_first_column)
 
     def generate_csv(self) -> str:
         file_content = files.read_file(self.file_to_convert)
