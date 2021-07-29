@@ -2,4 +2,4 @@ install:
 	poetry install
 
 test:
-	poetry run py.test --cov=anki_swiss_knife --cov-report xml --testdox tests/
+	poetry run py.test --cov=anki_swiss_knife --cov-report term --cov-report xml --testdox tests/
