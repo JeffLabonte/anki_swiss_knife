@@ -12,4 +12,5 @@ class ChineseAnkiCard:
         following_pinyin = self.translation if is_chinese_first else self.chinese_character
 
         second_column = f"{self.pinyin.rstrip()}\n{following_pinyin.lstrip()}"
-        return ";".join([first_column, second_column])
+        csv = ";".join([first_column, second_column])
+        return f"{csv}\n"
