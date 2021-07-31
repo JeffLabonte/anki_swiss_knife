@@ -3,6 +3,7 @@ from typing import List, Optional
 
 from xpinyin import Pinyin
 
+from anki_swiss_knife import translation
 from anki_swiss_knife.anki.anki_card import ChineseAnkiCard
 from anki_swiss_knife.constants import file_paths
 from anki_swiss_knife.helper import files
@@ -113,10 +114,15 @@ class AnkiChineseCardBuilder:
 
         try:
             english_sentence = ENGLISH_TEXT_REGEX.findall(english_translation.strip("\n"))
-            if english_sentence:
-                return self.remove_text_to_keep(english_sentence[-1]).lstrip(), " ".join(marked_pinyin).rstrip()
+            if not english_sentence:
+                english_sentence = translation.translate_text(
+                    text_to_translate=chinese_char,
+                    source_language_code="zh",
+                    target_language_code="en",
+                )
 
-            pass
+            return self.remove_text_to_keep(english_sentence[-1]).lstrip(), " ".join(marked_pinyin).rstrip()
+
         except IndexError as e:
             print(f"Something went wrong: {e}\nPinyin with english: {rest_of_sentence}\n")
             print(f"Pinyin Detected: {all_pinyins}")
