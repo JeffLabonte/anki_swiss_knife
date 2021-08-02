@@ -12,6 +12,7 @@ google-auth-oauthlib = "^0.4.5"
 boto3 = "^1.18.11"
 progressbar2 = "^3.53.1"
 xpinyin = "^0.7.6"
+requests = "^2.26.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"

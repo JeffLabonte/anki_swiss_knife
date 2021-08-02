@@ -835,7 +835,7 @@ test = ["pytest (>=6.2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "2c998db6afc06ac9af928f87ce6642c640c41e17bba1f761e9b25980b452cc68"
+content-hash = "2995572ee12449e7151030348d54f1afd4b5214aa86aec2171ad9b60ab8b689c"
 
 [metadata.files]
 appdirs = [
