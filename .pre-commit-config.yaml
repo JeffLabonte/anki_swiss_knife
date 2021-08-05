@@ -10,12 +10,6 @@ repos:
     - id: flake8
   - repo: local
     hooks:
-      - id: container_test
-        name: Run Contained Tests
-        entry: make test_container
-        pass_filenames: false
-        language: system
-        types: [python]
       - id: tests
         name: Run Tests
         entry: make test

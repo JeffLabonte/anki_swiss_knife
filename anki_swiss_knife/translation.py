@@ -1,6 +1,6 @@
-import boto3
+# import boto3
 
-translate_client = boto3.client("translate")
+# translate_client = boto3.client("translate")
 
 
 def translate_text(
@@ -8,9 +8,10 @@ def translate_text(
     source_language_code: str,
     target_language_code: str,
 ) -> str:
-    response = translate_client.translate_text(
-        Text=text_to_translate,
-        SourceLanguageCode=source_language_code,
-        TargetLanguageCode=target_language_code,
-    )
-    return response["TranslatedText"]
+    return
+    # response = translate_client.translate_text(
+    #     Text=text_to_translate,
+    #     SourceLanguageCode=source_language_code,
+    #     TargetLanguageCode=target_language_code,
+    # )
+    # return response["TranslatedText"]

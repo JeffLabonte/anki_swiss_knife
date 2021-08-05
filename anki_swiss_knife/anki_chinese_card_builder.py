@@ -9,7 +9,7 @@ from anki_swiss_knife.constants import file_paths
 from anki_swiss_knife.helper import files
 from anki_swiss_knife.language_validator.chinese_characters_validator import ChineseCharacterValidator
 
-ENGLISH_TEXT_REGEX = re.compile(r"[a-zA-Z1-9+., ]+[?! ]?")
+ENGLISH_TEXT_REGEX = re.compile(r"[a-zA-Z1-9+.,' ]+[?! ]?")
 
 
 class AnkiChineseCardBuilder:
@@ -114,6 +114,8 @@ class AnkiChineseCardBuilder:
 
         try:
             english_sentence = ENGLISH_TEXT_REGEX.findall(english_translation.strip("\n"))
+            english_sentence = self.remove_text_to_keep(english_sentence[-1]).lstrip() if english_sentence else None
+
             if not english_sentence:
                 english_sentence = translation.translate_text(
                     text_to_translate=chinese_char,
@@ -121,7 +123,7 @@ class AnkiChineseCardBuilder:
                     target_language_code="en",
                 )
 
-            return self.remove_text_to_keep(english_sentence[-1]).lstrip(), " ".join(marked_pinyin).rstrip()
+            return english_sentence, " ".join(marked_pinyin).rstrip()
 
         except IndexError as e:
             print(f"Something went wrong: {e}\nPinyin with english: {rest_of_sentence}\n")
