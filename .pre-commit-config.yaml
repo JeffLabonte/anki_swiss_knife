@@ -8,3 +8,17 @@ repos:
     rev: 3.7.9
     hooks:
     - id: flake8
+  - repo: local
+    hooks:
+      - id: container_test
+        name: Run Contained Tests
+        entry: make test_container
+        pass_filename: false
+        language: system
+        types: [python]
+      - id: tests
+        name: Run Tests
+        entry: make test
+        pass_filename: false
+        language: system
+        types: [python]
