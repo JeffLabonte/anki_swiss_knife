@@ -2,4 +2,5 @@ FROM anki_swiss_knife
 LABEL org.container.image.authors="grimsleepless@protonmail.com"
 
 ADD tests /code/tests
+
 ENTRYPOINT ["make", "test"]
