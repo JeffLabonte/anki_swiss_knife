@@ -18,4 +18,4 @@ test:
 	poetry run py.test --cov=anki_swiss_knife --cov-report term --cov-report xml --testdox tests/
 
 test_container: build_test_image
-	docker run -v tests/:/code/tests/ ${DOCKER_TEST_IMAGE_NAME}
+	docker run -v ${PWD}tests/:/code/tests/ ${DOCKER_TEST_IMAGE_NAME}

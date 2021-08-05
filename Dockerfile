@@ -9,9 +9,11 @@ RUN apt update && \
     pip install poetry==$POETRY_VERSION
 
 WORKDIR /code/
-ADD poetry.lock pyproject.toml Makefile /code/
-ADD anki_swiss_knife /code/anki_swiss_knife/
 
-RUN cd /code && poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi
+ADD poetry.lock pyproject.toml /code/
+RUN cd /code && poetry install --no-interaction --no-ansi
+
+ADD anki_swiss_knife /code/anki_swiss_knife/
+ADD Makefile /code/
 
 ENTRYPOINT ["poetry", "run", "python", "anki_swiss_knife/main.py"]
