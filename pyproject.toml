@@ -29,6 +29,7 @@ pylint = "^2.9.6"
 pytest-testdox = "^2.0.1"
 pytest-cov = "^2.12.1"
 flake8 = "^3.9.2"
+isort = "^5.9.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
