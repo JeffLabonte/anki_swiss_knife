@@ -15,6 +15,16 @@ import pytest
             4,
             "我吃苹果",
         ),
+        (
+            "我学中文。a phrase",
+            5,
+            "我学中文。",
+        ),
+        (
+            "我吃蓝莓及，也喝咖啡非 We write another sentence",
+            11,
+            "我吃蓝莓及，也喝咖啡非",
+        ),
     ],
 )
 def test__language_extractors__get_last_chinese_character_index(
