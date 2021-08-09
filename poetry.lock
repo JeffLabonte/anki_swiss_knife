@@ -519,7 +519,7 @@ python-versions = "*"
 
 [[package]]
 name = "pre-commit"
-version = "2.13.0"
+version = "2.14.0"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
 category = "dev"
 optional = false
@@ -904,7 +904,7 @@ test = ["pytest (>=6.2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "c0225bbfd779c50498d939e098f51d3bff9713d851763f81e42112c4653b2682"
+content-hash = "62327c3f24afd1a4c1f8fa1f5ff9bb6082feaf00011c90b33727811b54141cf5"
 
 [metadata.files]
 appdirs = [
@@ -1260,8 +1260,8 @@ polyglot = [
     {file = "polyglot-16.7.4.tar.gz", hash = "sha256:f7d9cca9a212622548e9416fb89f1238b994b8860ef49e03b7c82c67f9b6269b"},
 ]
 pre-commit = [
-    {file = "pre_commit-2.13.0-py2.py3-none-any.whl", hash = "sha256:b679d0fddd5b9d6d98783ae5f10fd0c4c59954f375b70a58cbe1ce9bcf9809a4"},
-    {file = "pre_commit-2.13.0.tar.gz", hash = "sha256:764972c60693dc668ba8e86eb29654ec3144501310f7198742a767bec385a378"},
+    {file = "pre_commit-2.14.0-py2.py3-none-any.whl", hash = "sha256:ec3045ae62e1aa2eecfb8e86fa3025c2e3698f77394ef8d2011ce0aedd85b2d4"},
+    {file = "pre_commit-2.14.0.tar.gz", hash = "sha256:2386eeb4cf6633712c7cc9ede83684d53c8cafca6b59f79c738098b51c6d206c"},
 ]
 progressbar2 = [
     {file = "progressbar2-3.53.1-py2.py3-none-any.whl", hash = "sha256:fe2738e7ecb7df52ad76307fe610c460c52b50f5335fd26c3ab80ff7655ba1e0"},

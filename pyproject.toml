@@ -23,7 +23,7 @@ pycld2 = "^0.41"
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
 black = "^21.6b0"
-pre-commit = "^2.13.0"
+pre-commit = "^2.14.0"
 neovim = "^0.3.1"
 pylint = "^2.9.6"
 pytest-testdox = "^2.0.1"
