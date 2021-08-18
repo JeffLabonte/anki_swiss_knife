@@ -53,6 +53,9 @@ def test__language_extractors__sanitize_phrase():
     (
         ["V+完", ((0, 1),)],
         ["在+V.", ((1, 3),)],
+        ["要 + V.", ((1, 5),)],
+        ["第一 + measure word", ((2, 16),)],
+        ["你看过Harry Potter吗？", ((3, 14),)],
     ),
 )
 def test__language_extractors__get_indexes_of_words_to_keep_in_phrase(

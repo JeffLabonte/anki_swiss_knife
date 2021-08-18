@@ -6,13 +6,11 @@ LATIN_UNICODES = "[\u0000-\u007F]"
 
 CHINESE_TEXT_TO_REMOVE = ("(future tense)",)
 
-CHINESE_WORDS_TO_KEEP = (
+CHINESE_WORDS_TO_KEEP = {
     " + V.",
-    "+ V.",
     "+V.",
     "V+",
     " + measure word",
-    "+ measure word",
     "+measure word",
     "SF",
     "Quebec City",
@@ -25,8 +23,5 @@ CHINESE_WORDS_TO_KEEP = (
     "Ajd. / V.  + ",
     "(是)",
     "(v./n.)",
-    "Harry Potter",
-    "SF",
-    "Quebec City",
-    "Star Wars",
-)
+    "Baie-Comeau",
+}
