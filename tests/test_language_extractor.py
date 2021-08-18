@@ -51,15 +51,8 @@ def test__language_extractors__sanitize_phrase():
 @pytest.mark.parametrize(
     "phrase, expected_indexes",
     (
-        [
-            "V+完",
-            (
-                (
-                    0,
-                    1,
-                ),
-            ),
-        ],
+        ["V+完", ((0, 1),)],
+        ["在+V.", ((1, 3),)],
     ),
 )
 def test__language_extractors__get_indexes_of_words_to_keep_in_phrase(
