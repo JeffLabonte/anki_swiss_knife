@@ -2,6 +2,8 @@
  [![Total alerts](https://img.shields.io/lgtm/alerts/g/JeffLabonte/anki_swiss_knife.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/JeffLabonte/anki_swiss_knife/alerts/) [![CodeQL](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/JeffLabonte/anki_swiss_knife/actions/workflows/codeql-analysis.yml)
 
 
+STILL A WORK IN PROGRESS
+
 ## Anki Swiss Knife
 
 笔记 : 我在学中文。在这个文件我要尝试翻译
