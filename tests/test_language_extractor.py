@@ -1,4 +1,4 @@
-from anki_swiss_knife.constants.languages import CHINESE_TEXT_TO_REMOVE
+from anki_swiss_knife.constants.languages import CHINESE_TEXT_TO_REMOVE, CHINESE_WORDS_TO_KEEP
 from anki_swiss_knife import language_extractors
 import pytest
 
@@ -46,3 +46,27 @@ def test__language_extractors__sanitize_phrase():
         text_to_remove=CHINESE_TEXT_TO_REMOVE,
     )
     assert sanitized_phrase == expected_sanitized_phrase
+
+
+@pytest.mark.parametrize(
+    "phrase, expected_indexes",
+    (
+        [
+            "V+完",
+            (
+                (
+                    0,
+                    1,
+                ),
+            ),
+        ],
+    ),
+)
+def test__language_extractors__get_indexes_of_words_to_keep_in_phrase(
+    phrase,
+    expected_indexes,
+):
+    indexes = language_extractors.get_indexes_of_words_to_keep_in_phrase(
+        phrase=phrase, words_to_keep=CHINESE_WORDS_TO_KEEP
+    )
+    assert indexes == expected_indexes

@@ -12,14 +12,15 @@ def get_indexes_of_words_to_keep_in_phrase(
 ) -> Tuple[Tuple[str]]:
     list_of_index = []
     for name in words_to_keep:
-        start_index = phrase.index(name)
-        end_index = start_index + len(name)
-        list_of_index.append(
-            (
-                start_index,
-                end_index,
+        if name in phrase:
+            start_index = phrase.index(name)
+            end_index = start_index + (len(name) - 1)
+            list_of_index.append(
+                (
+                    start_index,
+                    end_index,
+                )
             )
-        )
     return tuple(list_of_index)
 
 
@@ -27,7 +28,7 @@ def get_indexes_of_words_to_keep_in_phrase(
 def get_last_chinese_character_index(phrase: str, words_to_keep: List[str] = []) -> int:
     start_end_index = get_indexes_of_words_to_keep_in_phrase(phrase=phrase, words_to_keep=words_to_keep)
     for index, character in enumerate(phrase):
-        if isinstance(start_end_index, Tuple):
+        if start_end_index and isinstance(start_end_index, Tuple):
             start, end = start_end_index
             if start >= index >= end:
                 continue

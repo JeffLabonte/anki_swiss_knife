@@ -10,6 +10,7 @@ CHINESE_WORDS_TO_KEEP = (
     " + V.",
     "+ V.",
     "+V.",
+    "V+",
     " + measure word",
     "+ measure word",
     "+measure word",
