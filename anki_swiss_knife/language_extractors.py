@@ -32,11 +32,13 @@ def get_last_chinese_character_index(phrase: str, words_to_keep: Set[str]) -> in
                 continue
 
         is_chinese = (
-            chinese_validator.is_chinese_character(character=character) or character in EXTRA_PUNCTUATION_TO_KEEP
+            chinese_validator.is_chinese_character(character=character)
+            or character in EXTRA_PUNCTUATION_TO_KEEP
+            or (character.isdigit() and chinese_validator.is_chinese_character(phrase[index:]))
         )
         if not is_chinese:
             return index
-    return 0
+    return index + 1
 
 
 def sanitize_phrase(phrase: str, text_to_remove: Tuple[str]) -> str:
