@@ -25,3 +25,10 @@ CHINESE_WORDS_TO_KEEP = {
     "(v./n.)",
     "Baie-Comeau",
 }
+
+EXTRA_PUNCTUATION_TO_KEEP = {
+    ".",
+    ",",
+    "!",
+    "?",
+}

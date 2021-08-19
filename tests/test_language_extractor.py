@@ -26,6 +26,11 @@ import pytest
             11,
             "我吃蓝莓及，也喝咖啡非",
         ),
+        (
+            "你看过Harry Potter吗？ something something ah",
+            17,
+            "你看过Harry Potter吗？",
+        ),
     ],
 )
 def test__language_extractors__get_last_chinese_character_index(
@@ -33,7 +38,10 @@ def test__language_extractors__get_last_chinese_character_index(
     expected_index: int,
     expected_chinese: str,
 ):
-    index = language_extractors.get_last_chinese_character_index(phrase=multi_language_phrase)
+    index = language_extractors.get_last_chinese_character_index(
+        phrase=multi_language_phrase,
+        words_to_keep=CHINESE_WORDS_TO_KEEP,
+    )
     assert multi_language_phrase[:index] == expected_chinese
     assert index == expected_index
 
@@ -51,11 +59,11 @@ def test__language_extractors__sanitize_phrase():
 @pytest.mark.parametrize(
     "phrase, expected_indexes",
     (
-        ["V+完", ((0, 1),)],
-        ["在+V.", ((1, 3),)],
-        ["要 + V.", ((1, 5),)],
-        ["第一 + measure word", ((2, 16),)],
-        ["你看过Harry Potter吗？", ((3, 14),)],
+        ["V+完", [(0, 1)]],
+        ["在+V.", [(1, 3)]],
+        ["要 + V.", [(1, 5)]],
+        ["第一 + measure word", [(2, 16)]],
+        ["你看过Harry Potter吗？", [(3, 14)]],
     ),
 )
 def test__language_extractors__get_indexes_of_words_to_keep_in_phrase(
