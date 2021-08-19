@@ -1,7 +1,6 @@
 from anki_swiss_knife.constants.languages import CHINESE_TEXT_TO_REMOVE, CHINESE_WORDS_TO_KEEP
 from anki_swiss_knife.language_extractors import get_last_chinese_character_index, sanitize_phrase
 import re
-from typing import Tuple
 
 from xpinyin import Pinyin
 
@@ -29,18 +28,6 @@ class AnkiChineseCardBuilder:
         self.is_chinese_first_column = is_chinese_first_column
         self.pinyin = Pinyin()
         files.create_folder("/".join(self.csv_output_path.split("/")[:-1]))
-
-    def _remove_unwanted_text(self, text: str) -> str:
-        text = text.lstrip(",").lstrip(" ")
-        for remove in self.TEXT_TO_REMOVE:
-            text = text.replace(remove, "").lstrip(" ")
-        return text
-
-    def remove_text_to_keep(self, characters_to_sanitize: str) -> Tuple:
-        for character_to_remove in self.TEXT_TO_KEEP:
-            if character_to_remove not in self.NAMES:
-                characters_to_sanitize = characters_to_sanitize.replace(character_to_remove, "")
-        return characters_to_sanitize
 
     @staticmethod
     def _line_is_valid(line: str):
