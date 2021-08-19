@@ -5,6 +5,7 @@ class ChineseCharacterValidator(BaseCharacterValidator):
     CHINESE_UNICODES = "[\u4e00-\u9FFF]"
     LATIN_UNICODES = "[\u0000-\u007F]"
 
+    # TODO Add extra punctuation in constants
     CHINESE_PONCTUATION = ["？", "！", "。", "，"]
 
     def is_chinese_character(self, character: str) -> bool:
