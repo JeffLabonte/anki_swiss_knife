@@ -18,36 +18,8 @@ class AnkiChineseCardBuilder:
 
     This class works only for chinese character
     """
-
-    TEXT_TO_KEEP = (
-        " + V.",
-        "+ V.",
-        "+V.",
-        " + measure word",
-        "+ measure word",
-        "+measure word",
-        "SF",
-        "Quebec City",
-        " + W",
-        "V. + ",
-        "(个)",
-        "Harry Potter",
-        "Star Wars",
-        "+someone.+",
-        "Ajd. / V.  + ",
-        "(是)",
-        "，",
-        "(v./n.)",
-    )
-
-    NAMES = {
-        "Harry Potter",
-        "SF",
-        "Quebec City",
-        "Star Wars",
-    }
-
-    TEXT_TO_REMOVE = ("(future tense)",)
+    SOURCE_LANGUAGE = "zh"
+    TARGET_LANGUAGE = "en"
 
     def __init__(self, file_to_convert: str, is_chinese_first_column: bool = True):
         self.file_to_convert = file_to_convert
