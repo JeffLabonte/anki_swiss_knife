@@ -6,6 +6,7 @@ class ChineseAnkiCard:
     chinese_character: str
     pinyin: str
     translation: str
+    notes: str
 
     def to_csv(self, is_chinese_first: bool) -> str:
         first_column = self.chinese_character if is_chinese_first else self.translation
