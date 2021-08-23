@@ -24,6 +24,10 @@ CHINESE_WORDS_TO_KEEP = {
     "(是)",
     "(v./n.)",
     "Baie-Comeau",
+    "Linux",
+    "Windows",
+    "Android",
+    "/",
 }
 
 EXTRA_PUNCTUATION_TO_KEEP = {
