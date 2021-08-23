@@ -1,12 +1,13 @@
-from anki_swiss_knife.constants.languages import CHINESE_TEXT_TO_REMOVE, CHINESE_WORDS_TO_KEEP
-from anki_swiss_knife.language_extractors import get_last_chinese_character_index, sanitize_phrase
 import re
+from typing import Optional
 
 from xpinyin import Pinyin
 
 from anki_swiss_knife.anki.anki_card import ChineseAnkiCard
 from anki_swiss_knife.constants import file_paths
+from anki_swiss_knife.constants.languages import CHINESE_TEXT_TO_REMOVE, CHINESE_WORDS_TO_KEEP
 from anki_swiss_knife.helper import files
+from anki_swiss_knife.language_extractors import get_last_chinese_character_index, sanitize_phrase
 from anki_swiss_knife.translation import translate_text
 
 ENGLISH_TEXT_REGEX = re.compile(r"[a-zA-Z1-9+.,' ]+[?! ]?")
@@ -47,7 +48,7 @@ class AnkiChineseCardBuilder:
             target_language_code=self.TARGET_LANGUAGE,
         )
 
-    def generate_anki_card(self, line: str) -> ChineseAnkiCard:
+    def generate_anki_card(self, line: str) -> Optional[ChineseAnkiCard]:
         sanitized_phrase = sanitize_phrase(phrase=line, text_to_remove=CHINESE_TEXT_TO_REMOVE)
         index = get_last_chinese_character_index(phrase=sanitized_phrase, words_to_keep=CHINESE_WORDS_TO_KEEP)
         chinese_phrase, notes = sanitized_phrase[:index], sanitized_phrase[index:].lstrip()
@@ -64,8 +65,7 @@ class AnkiChineseCardBuilder:
         file_content = files.read_file(self.file_to_convert)
         with open(self.csv_output_path, "w+") as f:
             for content in file_content:
-                if self._line_is_valid(line=content):
-                    anki_card = self.generate_anki_card(line=content)
+                if self._line_is_valid(line=content) and (anki_card := self.generate_anki_card(line=content)):
                     f.write(anki_card.to_csv(is_chinese_first=self.is_chinese_first_column))
 
             return self.csv_output_path
