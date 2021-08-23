@@ -5,9 +5,15 @@ from xpinyin import Pinyin
 
 from anki_swiss_knife.anki.anki_card import ChineseAnkiCard
 from anki_swiss_knife.constants import file_paths
-from anki_swiss_knife.constants.languages import CHINESE_TEXT_TO_REMOVE, CHINESE_WORDS_TO_KEEP
+from anki_swiss_knife.constants.languages import (
+    CHINESE_TEXT_TO_REMOVE,
+    CHINESE_WORDS_TO_KEEP,
+)
 from anki_swiss_knife.helper import files
-from anki_swiss_knife.language_extractors import get_last_chinese_character_index, sanitize_phrase
+from anki_swiss_knife.language_extractors import (
+    get_last_chinese_character_index,
+    sanitize_phrase,
+)
 from anki_swiss_knife.translation import translate_text
 
 ENGLISH_TEXT_REGEX = re.compile(r"[a-zA-Z1-9+.,' ]+[?! ]?")

@@ -1,6 +1,10 @@
-from anki_swiss_knife.constants.languages import CHINESE_TEXT_TO_REMOVE, CHINESE_WORDS_TO_KEEP
-from anki_swiss_knife import language_extractors
 import pytest
+
+from anki_swiss_knife import language_extractors
+from anki_swiss_knife.constants.languages import (
+    CHINESE_TEXT_TO_REMOVE,
+    CHINESE_WORDS_TO_KEEP,
+)
 
 
 @pytest.mark.parametrize(

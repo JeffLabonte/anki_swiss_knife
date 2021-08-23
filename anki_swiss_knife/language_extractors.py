@@ -1,7 +1,9 @@
-from typing import Tuple, Set
+from typing import Set, Tuple
 
 from anki_swiss_knife.constants.languages import EXTRA_PUNCTUATION_TO_KEEP
-from anki_swiss_knife.language_validator.chinese_characters_validator import ChineseCharacterValidator
+from anki_swiss_knife.language_validator.chinese_characters_validator import (
+    ChineseCharacterValidator,
+)
 
 chinese_validator = ChineseCharacterValidator()
 

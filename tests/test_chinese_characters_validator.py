@@ -1,4 +1,6 @@
-from anki_swiss_knife.language_validator.chinese_characters_validator import ChineseCharacterValidator
+from anki_swiss_knife.language_validator.chinese_characters_validator import (
+    ChineseCharacterValidator,
+)
 
 
 def test__csv_generator__is_chinese_character__should_return_true_on_chinese_char():

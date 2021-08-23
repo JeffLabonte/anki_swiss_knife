@@ -1,4 +1,6 @@
-from anki_swiss_knife.language_validator.base_character_validator import BaseCharacterValidator
+from anki_swiss_knife.language_validator.base_character_validator import (
+    BaseCharacterValidator,
+)
 
 
 class ChineseCharacterValidator(BaseCharacterValidator):
