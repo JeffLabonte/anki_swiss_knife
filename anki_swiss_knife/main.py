@@ -32,6 +32,13 @@ def create_cli_parser():
         action="store_true",
         default=False,
     )
+    parser.add_argument(
+        "--chinese_not_first",
+        dest="chinese_not_first",
+        help="Set Chinese to back en English to Front",
+        action="store_false",
+        default=True,
+    )
     return parser
 
 
@@ -46,7 +53,10 @@ if __name__ == "__main__":
     google_docs = GoogleDocsDocumentReader(output_folder=gdocs_folder_path)
     gdoc_filepath = google_docs.extract_document_to_file(document_id=document_id)
 
-    csv_filepath = AnkiChineseCardBuilder(file_to_convert=gdoc_filepath).generate_csv()
+    csv_filepath = AnkiChineseCardBuilder(
+        file_to_convert=gdoc_filepath,
+        is_chinese_first_column=args.chinese_not_first,
+    ).generate_csv()
 
     if args.text_to_speech:
         text_to_speech = TextToSpeech(
