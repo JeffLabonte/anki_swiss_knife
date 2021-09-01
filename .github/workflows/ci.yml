@@ -21,7 +21,7 @@ jobs:
         python-version: 3.8
     - name: Install dependencies
       run: |
-        sudo apt install firefox firefox-geckodriver
+        sudo apt update && sudo apt install firefox firefox-geckodriver -y
         poetry install
     - name: Test with pytest
       run: |
