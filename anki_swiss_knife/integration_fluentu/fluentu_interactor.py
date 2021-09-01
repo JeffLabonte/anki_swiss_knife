@@ -1,6 +1,6 @@
 from selenium import webdriver
 
 
-class FluentuInterator:
+class FluentuInteractor:
     def __init__(self):
         self.driver = webdriver.Firefox()
