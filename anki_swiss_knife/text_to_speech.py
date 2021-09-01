@@ -57,11 +57,6 @@ class TextToSpeech:
 
         return filename_audio
 
-    def _write_audio_file(self, filename: str, content: bytes) -> None:
-        audio_path = f"{self.base_folder_path}/{filename}"
-        with open(audio_path, "wb") as file:
-            file.write(content)
-
     @staticmethod
     def _create_csv_with_speech_path(csv_filepath) -> str:
         delimiter = "/" if "/" in csv_filepath else "\\"
