@@ -1,4 +1,5 @@
-from typing import Set, Tuple
+from collections import namedtuple
+from typing import List, Set, Tuple
 
 from anki_swiss_knife.constants.languages import EXTRA_PUNCTUATION_TO_KEEP
 from anki_swiss_knife.language_validator.chinese_characters_validator import (
@@ -7,30 +8,36 @@ from anki_swiss_knife.language_validator.chinese_characters_validator import (
 
 chinese_validator = ChineseCharacterValidator()
 
+WordPosition = namedtuple("WordPosition", ["start_index", "end_index"])
+
 
 def get_indexes_of_words_to_keep_in_phrase(
     phrase: str,
     words_to_keep: Set[str],
-) -> Tuple[Tuple[str]]:
+) -> List[WordPosition]:
     list_of_index = []
     for name in words_to_keep:
         if name in phrase:
             start_index = phrase.index(name)
             end_index = start_index + (len(name) - 1)
             list_of_index.append(
-                (
-                    start_index,
-                    end_index,
+                WordPosition(
+                    start_index=start_index,
+                    end_index=end_index,
                 )
             )
     return list_of_index
 
 
 def get_last_chinese_character_index(phrase: str, words_to_keep: Set[str]) -> int:
-    start_end_indexes = get_indexes_of_words_to_keep_in_phrase(phrase=phrase, words_to_keep=words_to_keep)
+    word_positions = get_indexes_of_words_to_keep_in_phrase(phrase=phrase, words_to_keep=words_to_keep)
+    index = 0
     for index, character in enumerate(phrase):
-        if start_end_indexes:
-            if any(start >= index or index <= end for start, end in start_end_indexes):
+        if word_positions:
+            if any(
+                int(word_position.start_index) >= index or index <= int(word_position.end_index)
+                for word_position in word_positions
+            ):
                 continue
 
         is_chinese = (
