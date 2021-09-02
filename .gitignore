@@ -3,3 +3,4 @@
 .coverage
 htmlcov/
 coverage.xml
+geckodriver.log
