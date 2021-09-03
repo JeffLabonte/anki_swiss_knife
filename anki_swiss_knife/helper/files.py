@@ -11,7 +11,7 @@ def create_folder(file_path: str) -> None:
 
 
 def create_initial_file(file_path: str, content: Dict):
-    if not str(format).endswith(".ini"):
+    if not any(file_path.endswith(format) for format in SUPPORTED_EXTENSIONS):
         raise NotImplementedError(
             f"[X] The file path extension: {file_path} is not supported.",
             f"[X] This function supports: {SUPPORTED_EXTENSIONS}",
