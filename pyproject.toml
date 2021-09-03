@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["Jeff Labonte <grimsleepless@protonmail.com>"]
 
+[tool.pyright]
+python.analysis.autoImportCompletions = true
+
 [tool.poetry.dependencies]
 python = "^3.8"
 google-api-python-client = "^2.19.1"
