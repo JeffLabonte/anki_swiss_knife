@@ -1,4 +1,4 @@
-FROM python:3.9-buster
+FROM python
 LABEL org.container.image.authors="grimsleepless@protonmail.com"
 
 ENV POETRY_VERSION=1.1.7
