@@ -1,4 +1,5 @@
 from collections import namedtuple
+from typing import Dict
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -8,15 +9,15 @@ from anki_swiss_knife.helper.files import create_initial_file
 
 CreateInitialFileMocks = namedtuple(
     "CreateInitialFileMocks",
-    [
-        "path_exists_mock",
-        "mocked_function",
-    ],
+    ["path_exists_mock", "mocked_function", "mocked_content"],
 )
+
+MOCKED_CONTENT = {"a": "mock"}
 
 
 def setup_create_initial_file(
     file_exists: bool,
+    mocked_content: Dict = MOCKED_CONTENT,
     force_create: bool = False,
 ) -> CreateInitialFileMocks:
     from anki_swiss_knife.helper.files import SUPPORTED_EXTENSIONS
@@ -27,12 +28,11 @@ def setup_create_initial_file(
     ) as exists_mock:
         create_initial_file(
             file_path=base.CONFIGURATION_FILE_INI,
-            content={"a": "dev"},
+            content=mocked_content,
             force=force_create,
         )
         return CreateInitialFileMocks(
-            path_exists_mock=exists_mock,
-            mocked_function=mocked_function,
+            path_exists_mock=exists_mock, mocked_function=mocked_function, mocked_content=mocked_content
         )
 
 
@@ -44,25 +44,40 @@ def test__files__create_initial_file_not_supported__should_raise_not_implemented
         )
 
 
-def test__files__create_initial_file__should_not_raise_with__valid_format():
-    create_initial_file(
-        file_path=base.CONFIGURATION_FILE_INI,
-        content={"a": "dev"},
-    )
-
-
 def test__files_create_initial_file__should_call_function_when_file_doesnt_exists_supported_extension():
     mocks = setup_create_initial_file(file_exists=False)
 
-    assert mocks.mocked_function.called
-    assert mocks.path_exists_mock.called
-
     mocks.mocked_function.assert_called_once_with(
         file_path=base.CONFIGURATION_FILE_INI,
-        content={"a": "dev"},
+        content=mocks.mocked_content,
     )
-    mocks.path_exists_mock.assert_called_once_with(base.CONFIGURATION_FILE_INI)
+    mocks.path_exists_mock.assert_called_once_with(
+        base.CONFIGURATION_FILE_INI,
+    )
 
 
 def test__files_create_initial_file__should_not_call_function_when_file_exists():
-    pass
+    mocks = setup_create_initial_file(file_exists=True)
+
+    assert not mocks.mocked_function.called
+    mocks.path_exists_mock.assert_called_once_with(base.CONFIGURATION_FILE_INI)
+
+
+@pytest.mark.parametrize(
+    "file_exists",
+    (
+        True,
+        False,
+    ),
+)
+def test__files_create_inital_file__should_call_function_when_forced(file_exists):
+    mocks = setup_create_initial_file(
+        file_exists=file_exists,
+        force_create=True,
+    )
+
+    assert not mocks.path_exists_mock.called
+    mocks.mocked_function.called_once_with(
+        file_path=base.CONFIGURATION_FILE_INI,
+        content=mocks.mocked_content,
+    )
