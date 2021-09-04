@@ -63,3 +63,6 @@ def test__files_create_initial_file__should_call_function_when_file_doesnt_exist
     )
     mocks.path_exists_mock.assert_called_once_with(base.CONFIGURATION_FILE_INI)
 
+
+def test__files_create_initial_file__should_not_call_function_when_file_exists():
+    pass
