@@ -16,12 +16,16 @@ def create_ini_file(file_path: str, content: Dict) -> None:
         }
     }
     ```
+
     result:
+
+    ```ini
     [DEFAULT]
     config_a = 1
 
     [GROUP_A]
     config_b = valueB
+    ```
     """
     config = configparser.ConfigParser()
     for key, value in content:
