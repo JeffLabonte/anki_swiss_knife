@@ -58,26 +58,6 @@ def setup_anki_chinese_card_builder(file_to_convert=""):
             "4 gè rén yī chē",
             "4 Gèrén yī chē 4 person in a car",
         ),
-        # (
-        #     "12个人一队 12 ge rén yí duì 12 persons in a team",
-        #     "12个人一队;12 gè rén yī duì\n12 persons in a team\n",
-        # ),
-        # (
-        #     "V. + 了 past tense (you did something)",
-        #     "V. + 了;le\nyou did something\n",
-        # ),
-        # (
-        #     "你看过Harry Potter吗？Nǐ kànguò Harry Potter ma? Have you seen Harry Potter?",
-        #     "你看过Harry Potter吗？;nǐ kàn guò Harry Potter ma ？\nHave you seen Harry Potter?\n",
-        # ),
-        # (
-        #     "今天(是)星期六 Jīntiān (shì) xīngqíliù Today is Saturday",
-        #     "今天(是)星期六;jīn tiān xīng qī liù\nToday is Saturday\n",
-        # ),
-        # (
-        #     "今天天气怎么样？ jīn tiān tiān qì zěn me yáng ？ How's the weather today?",
-        #     "今天天气怎么样？;jīn tiān tiān qì zěn me yáng ？\nHow's the weather today?\n",
-        # ),
     ],
 )
 def test__anki_chinese_card_builder__generator_row__should_return_expected_format(
