@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from typing import Dict, Generator, Optional
 
-from anki_swiss_knife.helper.ini_file import create_ini_file
+from anki_swiss_knife.helper.configs import create_ini_file
 
 SUPPORTED_EXTENSIONS = {
     "ini": create_ini_file,

@@ -5,6 +5,11 @@ from anki_swiss_knife.anki_chinese_card_builder import AnkiChineseCardBuilder
 from anki_swiss_knife.constants import file_paths, languages
 from anki_swiss_knife.google_docs_document_reader import GoogleDocsDocumentReader
 from anki_swiss_knife.text_to_speech import TextToSpeech
+from anki_swiss_knife.helper import files
+
+
+def initial_startup():
+    pass
 
 
 def create_cli_parser():
