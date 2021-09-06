@@ -23,7 +23,6 @@ CHINESE_WORDS_TO_KEEP = {
     "Ajd. / V.  + ",
     "(是)",
     "(v./n.)",
-    " (v./n.)",
     "Baie-Comeau",
     "Linux",
     "Windows",
