@@ -4,7 +4,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from anki_swiss_knife.constants import base
+from anki_swiss_knife.constants import configs
 from anki_swiss_knife.helper.files import create_initial_file
 
 CreateInitialFileMocks = namedtuple(
@@ -27,7 +27,7 @@ def setup_create_initial_file(
         "anki_swiss_knife.helper.files.os.path.exists", return_value=file_exists
     ) as exists_mock:
         create_initial_file(
-            file_path=base.CONFIGURATION_FILE_INI,
+            file_path=configs.CONFIGURATION_FILE_INI,
             content=mocked_content,
             force=force_create,
         )
@@ -48,11 +48,11 @@ def test__files_create_initial_file__should_call_function_when_file_doesnt_exist
     mocks = setup_create_initial_file(file_exists=False)
 
     mocks.mocked_function.assert_called_once_with(
-        file_path=base.CONFIGURATION_FILE_INI,
+        file_path=configs.CONFIGURATION_FILE_INI,
         content=mocks.mocked_content,
     )
     mocks.path_exists_mock.assert_called_once_with(
-        base.CONFIGURATION_FILE_INI,
+        configs.CONFIGURATION_FILE_INI,
     )
 
 
@@ -60,7 +60,7 @@ def test__files_create_initial_file__should_not_call_function_when_file_exists()
     mocks = setup_create_initial_file(file_exists=True)
 
     assert not mocks.mocked_function.called
-    mocks.path_exists_mock.assert_called_once_with(base.CONFIGURATION_FILE_INI)
+    mocks.path_exists_mock.assert_called_once_with(configs.CONFIGURATION_FILE_INI)
 
 
 @pytest.mark.parametrize(
@@ -78,6 +78,6 @@ def test__files_create_inital_file__should_call_function_when_forced(file_exists
 
     assert not mocks.path_exists_mock.called
     mocks.mocked_function.called_once_with(
-        file_path=base.CONFIGURATION_FILE_INI,
+        file_path=configs.CONFIGURATION_FILE_INI,
         content=mocks.mocked_content,
     )
