@@ -23,3 +23,20 @@ I take those translations and make it into a CSV file. I added the option to add
 ### Setup
 
 You need to have access to Google Cloud. You must create a service account and give access to your document using the service account email
+
+### Configurations
+
+* General:
+  * text-with-speech
+    * Default: True
+    * Description: Create extra CSV file with text-to-speech.
+  * swap-source-destination-language
+    * Default: True
+    * Description: Create extra CSV filew where Language source is swapped with destination. i.e: ZH -> EN will be EN -> ZH
+  * enable-google-docs
+    * Default: True
+    * Description: Enable google docs to retrieve phrases. You need to specify your `credential_file` from Google and the `document-id`.
+  * enable-fluentu
+    * Default: False
+    * Description: Enable fluentu to retrieve saved words from. You need specify the `username` and the `password` within the `FluentU` section.
+  
