@@ -6,7 +6,7 @@ from anki_swiss_knife.constants import base
 
 
 def read_csv(file_path):
-    if not ".csv" in file_path:
+    if ".csv" not in file_path:
         raise RuntimeError("File extension is not .csv")
 
     with open(file_path, "r") as csv_file:
