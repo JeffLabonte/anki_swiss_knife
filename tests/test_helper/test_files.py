@@ -5,7 +5,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from anki_swiss_knife.constants import configs
-from anki_swiss_knife.helper.files import create_initial_file
+from anki_swiss_knife.helper.files import create_initial_file, get_parent_from_path
 
 CreateInitialFileMocks = namedtuple(
     "CreateInitialFileMocks",
@@ -81,3 +81,8 @@ def test__files_create_inital_file__should_call_function_when_forced(file_exists
         file_path=configs.CONFIGURATION_FILE_INI,
         content=mocks.mocked_content,
     )
+
+
+def test__files_get_parent_from_path__should_return_folder_of_file():
+    folder = get_parent_from_path(file_path=configs.CONFIGURATION_FILE_INI)
+    assert folder == configs.CONFIGURATION_FOLDER

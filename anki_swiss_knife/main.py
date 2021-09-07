@@ -2,14 +2,18 @@ import argparse
 import os
 
 from anki_swiss_knife.anki_chinese_card_builder import AnkiChineseCardBuilder
-from anki_swiss_knife.constants import file_paths, languages
+from anki_swiss_knife.constants import configs, file_paths, languages
 from anki_swiss_knife.google_docs_document_reader import GoogleDocsDocumentReader
-from anki_swiss_knife.text_to_speech import TextToSpeech
 from anki_swiss_knife.helper import files
+from anki_swiss_knife.text_to_speech import TextToSpeech
 
 
-def initial_startup():
-    pass
+def initial_startup(force: bool = False):
+    files.create_initial_file(
+        file_path=configs.CONFIGURATION_FILE_INI,
+        content=configs.DEFAULT_CONFIGURATIONS,
+        force=force,
+    )
 
 
 def create_cli_parser():
@@ -44,6 +48,14 @@ def create_cli_parser():
         action="store_false",
         default=True,
     )
+    parser.add_argument(
+        "--reset-configs",
+        dest="reset_configs",
+        help=f"Reset to default configs:\n{configs.DEFAULT_CONFIGURATIONS}",
+        action="store_true",
+        default=False,
+    )
+
     return parser
 
 
