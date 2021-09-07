@@ -51,6 +51,7 @@ def get_last_chinese_character_index(phrase: str, words_to_keep: Set[str]) -> in
 
 
 def sanitize_phrase(phrase: str, text_to_remove: Tuple[str]) -> str:
+    phrase = phrase.replace("  ", " ")
     for text in text_to_remove:
         phrase = phrase.replace(text, "")
     return phrase
