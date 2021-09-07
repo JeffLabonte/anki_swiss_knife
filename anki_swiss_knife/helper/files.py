@@ -18,6 +18,10 @@ def get_file_extension(file_path: str) -> Optional[str]:
         return file_extension[-1]
 
 
+def get_parent_from_path(file_path: str) -> str:
+    return str(Path(file_path).parent.absolute())
+
+
 def create_initial_file(file_path: str, content: Dict, force: bool = False):
     file_extension = get_file_extension(file_path=file_path)
     if not any(file_extension == extension for extension in SUPPORTED_EXTENSIONS.keys()):
