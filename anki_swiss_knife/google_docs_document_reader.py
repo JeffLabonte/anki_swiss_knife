@@ -46,7 +46,7 @@ class GoogleDocsDocumentReader:
 
     def init(self):
         self._login_to_google()
-        files.create_folder(file_path=self.output_folder)
+        files.create_folder(folder_path=self.output_folder)
 
     def get_document(self, document_id: str):
         return self.service.documents().get(documentId=document_id)

@@ -34,7 +34,9 @@ class AnkiChineseCardBuilder:
         self.csv_output_path = self._generate_csv_file_path()
         self.is_chinese_first_column = is_chinese_first_column
         self.pinyin = Pinyin()
-        files.create_folder("/".join(self.csv_output_path.split("/")[:-1]))
+        files.create_folder(
+            folder_path=files.get_parent_from_path(file_path=self.csv_output_path),
+        )
 
     @staticmethod
     def _line_is_valid(line: str):

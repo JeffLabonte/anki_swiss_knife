@@ -9,8 +9,8 @@ SUPPORTED_EXTENSIONS = {
 }
 
 
-def create_folder(file_path: str) -> None:
-    Path(file_path).mkdir(parents=True, exist_ok=True)
+def create_folder(folder_path: str) -> None:
+    Path(folder_path).mkdir(parents=True, exist_ok=True)
 
 
 def get_file_extension(file_path: str) -> Optional[str]:
