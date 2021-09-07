@@ -27,9 +27,17 @@ def create_ini_file(file_path: str, content: Dict) -> None:
     config_b = valueB
     ```
     """
+    from anki_swiss_knife.helper.files import create_folder, get_parent_from_path
+
+    folder_path = get_parent_from_path(
+        file_path=file_path,
+    )
+    create_folder(
+        folder_path=folder_path,
+    )
     config = configparser.ConfigParser()
-    for key, value in content:
-        config[key] = str(value)
+    for key, sub_dict in content.items():
+        config[key] = {subkey: str(value) for subkey, value in sub_dict.items()}
 
     with open(file_path, "w+") as init_file:
         config.write(init_file)
