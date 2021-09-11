@@ -1,7 +1,7 @@
 FROM gitpod/workspace-full
 
 ENV PATH=$PATH:$HOME/.poetry/bin
-ENV PIP_USER="no"
+ENV PIP_USER=false
 
 RUN sudo apt update && \
     sudo apt dist-upgrade -y && \
