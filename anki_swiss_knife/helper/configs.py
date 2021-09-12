@@ -43,7 +43,24 @@ def create_ini_file(file_path: str, content: Dict) -> None:
         config.write(init_file)
 
 
+def cast_config_type(value: str):
+    if value == "True" or value == "False":
+        return bool(value)
+    elif value.isdigit():
+        return int(value)
+    else:
+        return value
+
+
 def read_config(file_path: str) -> Dict:
-    with open(file_path, "r+") as file:
-        pass
-    return {}
+    config = configparser.ConfigParser(allow_no_value=False)
+    config.read(file_path)
+    return {
+        section: {
+            conf: cast_config_type(
+                value=config.get(section, conf),
+            )
+            for conf in config[section]
+        }
+        for section in config.sections()
+    }
