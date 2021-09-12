@@ -44,4 +44,6 @@ def create_ini_file(file_path: str, content: Dict) -> None:
 
 
 def read_config(file_path: str) -> Dict:
-    pass
+    with open(file_path, "r+") as file:
+        pass
+    return {}
