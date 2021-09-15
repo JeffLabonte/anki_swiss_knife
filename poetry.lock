@@ -632,7 +632,7 @@ virtualenv = ">=20.0.8"
 
 [[package]]
 name = "progressbar2"
-version = "3.53.2"
+version = "3.53.3"
 description = "A Python Progressbar library to provide visual (yet text based) progress to long running operations."
 category = "main"
 optional = false
@@ -1177,7 +1177,7 @@ test = ["pytest (>=6.2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "17541a4f80acb78ff4bb30e151cc9feeb045285ec13e2280c88b28adf01cb55d"
+content-hash = "0c84b927b66d139f35667bca77854d81d4dc63e1d22474a6bea8ca9f0a1ba438"
 
 [metadata.files]
 alabaster = [
@@ -1625,8 +1625,8 @@ pre-commit = [
     {file = "pre_commit-2.15.0.tar.gz", hash = "sha256:3c25add78dbdfb6a28a651780d5c311ac40dd17f160eb3954a0c59da40a505a7"},
 ]
 progressbar2 = [
-    {file = "progressbar2-3.53.2-py2.py3-none-any.whl", hash = "sha256:c84d074ffb68159dc1b844eeb9e765dac84a633d3fa8527000b53a6a86bd2f93"},
-    {file = "progressbar2-3.53.2.tar.gz", hash = "sha256:8c150baaa33448c1e34a2cafa5108285d96f2c877bdf64fcbd77f26cb135435d"},
+    {file = "progressbar2-3.53.3-py2.py3-none-any.whl", hash = "sha256:6610fe393a4591967ecf9062d42c0663c8862092245c490e5971ec5f348755ca"},
+    {file = "progressbar2-3.53.3.tar.gz", hash = "sha256:f4e1c2d48e608850c59f793d6e74ccdebbcbaac7ffe917d45e9646ec0d664d6d"},
 ]
 protobuf = [
     {file = "protobuf-3.17.3-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:ab6bb0e270c6c58e7ff4345b3a803cc59dbee19ddf77a4719c5b635f1d547aa8"},
