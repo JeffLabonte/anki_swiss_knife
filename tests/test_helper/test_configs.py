@@ -12,3 +12,5 @@ def test__helper_configs__read_configs__should_return_dict_with_configs(fake_con
         for config, value in configs.items():
             if config_section:
                 assert config_section.pop(config, False) == value, f"Value for config: {config} doesn't match"
+
+    assert not config_dict
