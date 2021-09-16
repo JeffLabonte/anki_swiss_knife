@@ -53,14 +53,9 @@ def cast_config_type(value: str):
 
 
 def read_config(file_path: str) -> Dict:
-    config = configparser.ConfigParser(allow_no_value=False)
+    config = configparser.ConfigParser(allow_no_value=True)
     config.read(file_path)
     return {
-        section: {
-            conf: cast_config_type(
-                value=config.get(section, conf),
-            )
-            for conf in config[section]
-        }
+        section: {conf: cast_config_type(value=value) for conf, value in config[section].items()}
         for section in config.sections()
     }
