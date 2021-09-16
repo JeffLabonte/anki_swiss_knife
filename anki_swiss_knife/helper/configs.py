@@ -45,7 +45,7 @@ def create_ini_file(file_path: str, content: Dict) -> None:
 
 def cast_config_type(value: str):
     if value == "True" or value == "False":
-        return bool(value)
+        return True if value == "True" else False
     elif value.isdigit():
         return int(value)
     else:
