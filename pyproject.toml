@@ -33,7 +33,7 @@ flake8 = "^4.0.1"
 isort = "^5.10.0"
 bandit = "^1.7.0"
 Sphinx = "^4.2.0"
-pyfakefs = "^4.5.1"
+pyfakefs = "^4.5.2"
 rope = "^0.21.0"
 
 [build-system]
