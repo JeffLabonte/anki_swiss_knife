@@ -706,7 +706,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "pyfakefs"
-version = "4.5.2"
+version = "4.5.3"
 description = "pyfakefs implements a fake file system that mocks the Python file system modules."
 category = "dev"
 optional = false
@@ -1181,7 +1181,7 @@ test = ["pytest (>=6.2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "87b9c749bd179a263007bd20c3f0e28291ceaeca73ed277e045af549accfa371"
+content-hash = "d0aca2fc91a8f9b2643fae00301bb8c1958b9f2a6d47e7b123f69f10484e8516"
 
 [metadata.files]
 alabaster = [
@@ -1712,8 +1712,8 @@ pycodestyle = [
     {file = "pycodestyle-2.8.0.tar.gz", hash = "sha256:eddd5847ef438ea1c7870ca7eb78a9d47ce0cdb4851a5523949f2601d0cbbe7f"},
 ]
 pyfakefs = [
-    {file = "pyfakefs-4.5.2-py3-none-any.whl", hash = "sha256:02586e2f8c39443c2c43f951c22fce5955e4462b7d75d0fa24cba2feef26098d"},
-    {file = "pyfakefs-4.5.2.tar.gz", hash = "sha256:b01f31e330e0f240ef4699a5f120db97661de16f1ed524249f2482305903feea"},
+    {file = "pyfakefs-4.5.3-py3-none-any.whl", hash = "sha256:501d784c6ad57ce7ab727249166d58043d199ebbb67b404ecab67bcb1a9bb696"},
+    {file = "pyfakefs-4.5.3.tar.gz", hash = "sha256:f49db689c1d5db6172131479ca77bd474ba2cb886c869b9867fb89cdab2df397"},
 ]
 pyflakes = [
     {file = "pyflakes-2.4.0-py2.py3-none-any.whl", hash = "sha256:3bb3a3f256f4b7968c9c788781e4ff07dce46bdf12339dcda61053375426ee2e"},
