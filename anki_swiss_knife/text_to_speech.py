@@ -16,6 +16,7 @@ class TextToSpeech:
         language_code: str,
         voice_id: str,
         csv_filepath: str,
+        is_chinese_first_column: bool,
     ):
         """
         https://docs.aws.amazon.com/polly/latest/dg/voicelist.html
@@ -26,6 +27,7 @@ class TextToSpeech:
         self.voice_id = voice_id
         self.csv_filepath = csv_filepath
         self.csv_with_speech_path = self._create_csv_with_speech_path(csv_filepath=csv_filepath)
+        self.is_chinese_first_column = is_chinese_first_column
         self._polly = boto3.client("polly")
         self._progress_bar = progressbar.ProgressBar(max_value=progressbar.UnknownLength)
 
@@ -33,7 +35,7 @@ class TextToSpeech:
         csv_contents = helper_csv.read_csv(file_path=self.csv_filepath)
 
         for index, content in enumerate(csv_contents):
-            audio_path = self.generate_sound(text=content.word)
+            audio_path = self.generate_sound(text=content.word if self.is_chinese_first_column else content.translation)
             content.speech = f"[sound:{audio_path}]"
             self._progress_bar.update(index)
 

@@ -22,12 +22,6 @@ def setup_anki_chinese_card_builder(file_to_convert=""):
             "yào will, be going to + V.",
         ),
         (
-            "放假 (v./n.) fàng jiǎ (v./n.) vacation",
-            "放假 (v./n.)",
-            "fàng jiǎ",
-            "fàng jiǎ (v./n.) vacation",
-        ),
-        (
             "第一 + measure word, dì yī + measure word first",
             "第一 + measure word,",
             "dì yī",
