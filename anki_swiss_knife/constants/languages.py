@@ -29,6 +29,8 @@ CHINESE_WORDS_TO_KEEP = frozenset(
         "Windows",
         "Android",
         "/",
+        "Podcast",
+        "Podcasts",
     }
 )
 
