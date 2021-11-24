@@ -34,7 +34,7 @@ isort = "^5.10.1"
 bandit = "^1.7.1"
 Sphinx = "^4.3.0"
 pyfakefs = "^4.5.3"
-rope = "^0.21.1"
+rope = "^0.22.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
