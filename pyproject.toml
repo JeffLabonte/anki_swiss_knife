@@ -32,7 +32,7 @@ pytest-cov = "^3.0.0"
 flake8 = "^4.0.1"
 isort = "^5.10.1"
 bandit = "^1.7.1"
-Sphinx = "^4.3.0"
+Sphinx = "^4.3.1"
 pyfakefs = "^4.5.3"
 rope = "^0.22.0"
 
