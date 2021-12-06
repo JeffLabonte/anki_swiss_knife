@@ -894,14 +894,14 @@ testing = ["fields", "hunter", "process-tests", "six", "pytest-xdist", "virtuale
 
 [[package]]
 name = "pytest-testdox"
-version = "2.0.1"
+version = "3.0.0"
 description = "A testdox format reporter for pytest"
 category = "dev"
 optional = false
-python-versions = ">=3.5"
+python-versions = ">=3.6"
 
 [package.dependencies]
-pytest = ">=3.7.0"
+pytest = ">=4.6.0"
 
 [[package]]
 name = "python-dateutil"
@@ -1317,7 +1317,7 @@ test = ["pytest (>=6.2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "1c9469e9cc70fe3bbe9bdb86efd91183332bae822966803bc756ed3fd39bad34"
+content-hash = "d15425f0bd50e185916ac8fe80e42cf2a934f65b7d5f73f5859cc514370bc75d"
 
 [metadata.files]
 alabaster = [
@@ -1978,8 +1978,8 @@ pytest-cov = [
     {file = "pytest_cov-3.0.0-py3-none-any.whl", hash = "sha256:578d5d15ac4a25e5f961c938b85a05b09fdaae9deef3bb6de9a6e766622ca7a6"},
 ]
 pytest-testdox = [
-    {file = "pytest-testdox-2.0.1.tar.gz", hash = "sha256:5cd1d986cb9e33edca4271c57541c57d868781c8090e551374d7e6eeafac465a"},
-    {file = "pytest_testdox-2.0.1-py2.py3-none-any.whl", hash = "sha256:ce9d516c047f718e7707975582e52d6ac922330bdcf87837f8d3fd619057af6f"},
+    {file = "pytest-testdox-3.0.0.tar.gz", hash = "sha256:c4700a817dcc3c546403fd60423c281b51f33b068eecc546bb2f41ce3359c602"},
+    {file = "pytest_testdox-3.0.0-py2.py3-none-any.whl", hash = "sha256:af80cf480943898b4c80ad652492bb998498e1647fff81a20ee07f1d5f466e4c"},
 ]
 python-dateutil = [
     {file = "python-dateutil-2.8.2.tar.gz", hash = "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"},
