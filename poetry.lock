@@ -691,19 +691,18 @@ virtualenv = ">=20.0.8"
 
 [[package]]
 name = "progressbar2"
-version = "3.55.0"
+version = "4.0.0"
 description = "A Python Progressbar library to provide visual (yet text based) progress to long running operations."
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=3.7.0"
 
 [package.dependencies]
-python-utils = ">=2.3.0"
-six = "*"
+python-utils = ">=3.0.0"
 
 [package.extras]
-docs = ["sphinx (>=1.7.4)"]
-tests = ["flake8 (>=3.7.7)", "pytest (>=4.6.9)", "pytest-cov (>=2.6.1)", "freezegun (>=0.3.11)", "sphinx (>=1.8.5)"]
+docs = ["sphinx (>=1.8.5)"]
+tests = ["flake8 (>=3.7.7)", "pytest (>=4.6.9)", "pytest-cov (>=2.6.1)", "pytest-mypy", "freezegun (>=0.3.11)", "sphinx (>=1.8.5)"]
 
 [[package]]
 name = "protobuf"
@@ -916,14 +915,15 @@ six = ">=1.5"
 
 [[package]]
 name = "python-utils"
-version = "2.5.6"
+version = "3.0.0"
 description = "Python Utils is a module with some convenient utilities not included with the standard Python install"
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">3.6.0"
 
-[package.dependencies]
-six = "*"
+[package.extras]
+docs = ["six", "mock", "sphinx", "python-utils"]
+tests = ["flake8", "pytest", "pytest-cov", "pytest-mypy", "pytest-flake8", "pytest-asyncio", "sphinx", "types-setuptools"]
 
 [[package]]
 name = "pytz"
@@ -1317,7 +1317,7 @@ test = ["pytest (>=6.2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "f9ad7e8be6e99749a788f19ecc8c2a9505fcf92d323423ae0ff6cb96943fbdf5"
+content-hash = "2c09f519d9d0be4717131a66aa677909c70f9143156931266a66411a00641ae0"
 
 [metadata.files]
 alabaster = [
@@ -1856,8 +1856,8 @@ pre-commit = [
     {file = "pre_commit-2.16.0.tar.gz", hash = "sha256:fe9897cac830aa7164dbd02a4e7b90cae49630451ce88464bca73db486ba9f65"},
 ]
 progressbar2 = [
-    {file = "progressbar2-3.55.0-py2.py3-none-any.whl", hash = "sha256:e98fee031da31ab9138fd8dd838ac80eafba82764eb75a43d25e3ca622f47d14"},
-    {file = "progressbar2-3.55.0.tar.gz", hash = "sha256:86835d1f1a9317ab41aeb1da5e4184975e2306586839d66daf63067c102f8f04"},
+    {file = "progressbar2-4.0.0-py2.py3-none-any.whl", hash = "sha256:2562ba3e554433f08e81fb7b786208b19de135f3ca1c5da1787d9b05558e6247"},
+    {file = "progressbar2-4.0.0.tar.gz", hash = "sha256:14d3165a1781d053ffaa117daf27cc706128d2ec1d2977fdb05b6bb079888013"},
 ]
 protobuf = [
     {file = "protobuf-3.17.3-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:ab6bb0e270c6c58e7ff4345b3a803cc59dbee19ddf77a4719c5b635f1d547aa8"},
@@ -1980,8 +1980,8 @@ python-dateutil = [
     {file = "python_dateutil-2.8.2-py2.py3-none-any.whl", hash = "sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"},
 ]
 python-utils = [
-    {file = "python-utils-2.5.6.tar.gz", hash = "sha256:352d5b1febeebf9b3cdb9f3c87a3b26ef22d3c9e274a8ec1e7048ecd2fac4349"},
-    {file = "python_utils-2.5.6-py2.py3-none-any.whl", hash = "sha256:18fbc1a1df9a9061e3059a48ebe5c8a66b654d688b0e3ecca8b339a7f168f208"},
+    {file = "python-utils-3.0.0.tar.gz", hash = "sha256:88530150b01dcbbfb6d62e1557bee3ccfc1f12d72f283dc7653aa969df42de72"},
+    {file = "python_utils-3.0.0-py2.py3-none-any.whl", hash = "sha256:fc306bae5693e92cbac2e68fbd145a3b6a62d74f9de70bb75c2d63ca4aa04d5d"},
 ]
 pytz = [
     {file = "pytz-2021.1-py2.py3-none-any.whl", hash = "sha256:eb10ce3e7736052ed3623d49975ce333bcd712c7bb19a58b9e2089d4057d0798"},
