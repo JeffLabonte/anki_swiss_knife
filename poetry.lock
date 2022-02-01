@@ -809,7 +809,7 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "pyicu"
-version = "2.8"
+version = "2.8.1"
 description = "Python extension wrapping the ICU C++ API"
 category = "main"
 optional = false
@@ -1998,7 +1998,7 @@ pygments = [
     {file = "Pygments-2.10.0.tar.gz", hash = "sha256:f398865f7eb6874156579fdf36bc840a03cab64d1cde9e93d68f46a425ec52c6"},
 ]
 pyicu = [
-    {file = "PyICU-2.8.tar.gz", hash = "sha256:3d80de47045a8163db5aebc947c42b4d429eeea4f0c32af4f40b33981fa872b9"},
+    {file = "PyICU-2.8.1.tar.gz", hash = "sha256:f0b9549a87f87ba7c413f13679d137271e0b37f1f39b0109ace38257d4d148d6"},
 ]
 pylint = [
     {file = "pylint-2.12.2-py3-none-any.whl", hash = "sha256:daabda3f7ed9d1c60f52d563b1b854632fd90035bcf01443e234d3dc794e3b74"},
