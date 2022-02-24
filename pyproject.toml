@@ -19,7 +19,7 @@ PyICU = "^2.8"
 Morfessor = "^2.0.6"
 numpy = "^1.22.2"
 pycld2 = "^0.41"
-selenium = "^4.1.0"
+selenium = "^4.1.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.0"
