@@ -828,7 +828,7 @@ python-versions = "*"
 
 [[package]]
 name = "pylint"
-version = "2.13.2"
+version = "2.13.5"
 description = "python code static checker"
 category = "dev"
 optional = false
@@ -1371,7 +1371,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "0f08419ddceb9ec2ab0ecb0eeb87e90a6b6bc87dfa4d45be41344ce8443164a3"
+content-hash = "bcc2673bbdfcf97da9932d03e9c72cf301bb130f9b60b843cafad34f5f043ac1"
 
 [metadata.files]
 alabaster = [
@@ -2024,8 +2024,8 @@ pyicu = [
     {file = "PyICU-2.8.1.tar.gz", hash = "sha256:f0b9549a87f87ba7c413f13679d137271e0b37f1f39b0109ace38257d4d148d6"},
 ]
 pylint = [
-    {file = "pylint-2.13.2-py3-none-any.whl", hash = "sha256:3cd8eb401c6aa6c66b614d72cf0c54a02d6bf7752aa9890fc41de71030f3c81a"},
-    {file = "pylint-2.13.2.tar.gz", hash = "sha256:0c6dd0e53e6e17f2d0d62660905f3868611e734e9d9b310dc651a4b9f3dc70da"},
+    {file = "pylint-2.13.5-py3-none-any.whl", hash = "sha256:c149694cfdeaee1aa2465e6eaab84c87a881a7d55e6e93e09466be7164764d1e"},
+    {file = "pylint-2.13.5.tar.gz", hash = "sha256:dab221658368c7a05242e673c275c488670144123f4bd262b2777249c1c0de9b"},
 ]
 pynvim = [
     {file = "pynvim-0.4.3.tar.gz", hash = "sha256:3a795378bde5e8092fbeb3a1a99be9c613d2685542f1db0e5c6fd467eed56dff"},
