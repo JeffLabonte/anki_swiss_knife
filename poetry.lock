@@ -820,7 +820,7 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "pyicu"
-version = "2.8.1"
+version = "2.9"
 description = "Python extension wrapping the ICU C++ API"
 category = "main"
 optional = false
@@ -1371,7 +1371,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "b87155ea785df266a00a25020b3ef5b3c1225f17eb882c6ebb2936e67fc9ec61"
+content-hash = "5d9690e02f1b37f10d813452d66395d87fa624ff1f85806386baf1a7b4910f25"
 
 [metadata.files]
 alabaster = [
@@ -2021,7 +2021,7 @@ pygments = [
     {file = "Pygments-2.10.0.tar.gz", hash = "sha256:f398865f7eb6874156579fdf36bc840a03cab64d1cde9e93d68f46a425ec52c6"},
 ]
 pyicu = [
-    {file = "PyICU-2.8.1.tar.gz", hash = "sha256:f0b9549a87f87ba7c413f13679d137271e0b37f1f39b0109ace38257d4d148d6"},
+    {file = "PyICU-2.9.tar.gz", hash = "sha256:3c29d6ce65546157117a1a347a303ecdfcf1a7591ed679fc88cdef4108845878"},
 ]
 pylint = [
     {file = "pylint-2.13.5-py3-none-any.whl", hash = "sha256:c149694cfdeaee1aa2465e6eaab84c87a881a7d55e6e93e09466be7164764d1e"},
